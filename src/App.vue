@@ -1,8 +1,21 @@
 <template>
     <div id="app">
+        <Header />
         <router-view/>
     </div>
 </template>
+
+<script>
+import Header from '@/components/Header.vue'
+
+// @ is an alias to /src
+export default {
+  name: 'learn',
+  components: {
+    Header
+  }
+}
+</script>
 
 <style>
 body {
