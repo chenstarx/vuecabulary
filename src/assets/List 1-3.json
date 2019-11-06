@@ -1,0 +1,902 @@
+{
+    "controversial": {
+        "value": "adj. 有争议的；引发争论的：causing a lot of disagreement, because many people have strong opinions about the subject being discussed\nadj. 爱争论的；好争辩的：fond of controversy; disputatious\n【派】controversy   n. 争论，争议\n【考】controversial；controversy ；controversies；uncontroversial"
+    },
+    "complicate": {
+        "value": "v. 使复杂或令人困惑：to make or become complex or perplexing\n【注】complicated adj. 复杂的；难懂的。该词的同义词：byzantine, complex, convoluted, daedal, daedalian, elaborate, intricate, involute, involved, knotty, labyrinthine, tangled\n【考】complicate；complicated; uncomplicated"
+    },
+    "consistent": {
+        "value": "adj.符合的，一致的，不矛盾的：in agreement; compatible\nadj. (行为，态度等)一致的，一贯的：being in agreement with itself; coherent and uniform\nadj. (观点或看法)前后一致的，连贯的： an argument or set of ideas that is consistent is one in which no part contradicts or conflicts with any other part.\n【考】consistent ；inconsistent"
+    },
+    "indifferent": {
+        "value": "adj. 不感兴趣的；不关心的；冷淡的：having no particular interest in or concern for; apathetic\nadj. 中立的，公正的：characterized by a lack of partiality; unbiased\nadj. 一般的，平庸的：being neither good nor bad; mediocre\n【考】indifferent；different；difference；differentical；indifference"
+    },
+    "augment": {
+        "value": "vt. 增长，增加，提高：to make greater, more numerous, larger, or more intense \n【考】augment ；augmented；augmenting"
+    },
+    "comprehensive": {
+        "value": "adj.  全面的，广泛的：so large in scope or content as to include much\nadj. 易理解的：marked by or showing extensive understanding\n【考】comprehensive；comprehensiveness；comprehensible；incomprehensible"
+    },
+    "anticipate": {
+        "value": "v. 预期, 期望：to look forward to, especially with pleasure; expect\nv. 预感，预料：to feel or realize beforehand; foresee\nv. 早于…做（或想、说）；先于…行动：to do something before someone else\n【派】unanticipated  adj. 未曾料到的，意料之外的\n【考】anticipate；anticipates；anticipated；anticipating；"
+    },
+    "conjecture": {
+        "value": "n./v.  推测，猜测：inference or judgment based on inconclusive or incomplete evidence; guesswork\n【派】conjectural  adj. 推测的，凭猜测的\n【考】conjecture ；conjectural "
+    },
+    "celebrated": {
+        "value": "adj. 著名的；有名的；受人敬仰的：known and praised widely; noted\n【考】celebrated；celebrating"
+    },
+    "decline": {
+        "value": "n. 衰落: the process or result of declining, especially a gradual deterioration\nv. 衰败: to deteriorate gradually; fail; lose strength or power\nv. 婉辞，拒绝：to refuse politely\nv. 接近结束；消逝: to draw to a gradual close; wane\n【考】decline；declines；declined；declining"
+    },
+    "capricious": {
+        "value": "adj. 反覆无常的，多变的：characterized by or subject to whim; impulsive and unpredictable\n【派】capriciousness  n. 反复无常，善变"
+    },
+    "plausible": {
+        "value": "adj. 似乎真实的，貌似合理的：seemingly or apparently valid, likely, or acceptable; credible\n【派】plausibility  n.  看似有理\n【注】考生要注意该词的精确含义，不要被中文释义所迷惑。当看到该词直接等同于credible即可。\n【考】plausible；implausible"
+    },
+    "diminish": {
+        "value": "v.（使）减小；（使）减弱；（使）降低： to make less or cause to appear less\nv.贬低；轻视：to lessen the authority, dignity, or reputation of:belittle\n【派】undiminished  adj. 为减少的，未削弱的\n【考】diminish；diminishes；diminished；undiminished "
+    },
+    "exacerbate": {
+        "value": "v. 恶化；增剧：to increase the severity, violence, or bitterness of; aggravate\n【考】exacerbate ；exacerbated；exacerbating"
+    },
+    "exploit": {
+        "value": "v. 充分利用，充分运用；发挥：to employ to the greatest possible advantage\nv. 压榨；剥削；占…的便宜：to make use of meanly or unfairly for one's own advantage\nn. 英勇行为；功绩：an act or deed, especially a brilliant or heroic one\n【考】exploit；exploited；exploiting；unexploited"
+    },
+    "obscure": {
+        "value": "v. 使变模糊：to make dim or indistinct\nv. 使晦涩；使费解；使难懂：to obscure something means to make it difficult to understand\nadj. 模糊的；晦涩的，难懂的：not clearly understood or expressed; ambiguous or vague"
+    },
+    "subtle": {
+        "value": "adj. 不易察觉的，不明显的，微妙的：so slight as to be difficult to detect or analyze; elusive\nadj. 令人费解的，不易察觉的：difficult to understand or perceive : obscure\nadj. 敏锐的，有深刻见解的：having or marked by keen insight and ability to penetrate deeply and thoroughly\nadj. 技艺精湛的：highly skillful: expert"
+    },
+    "derivative": {
+        "value": "adj. 模仿他人的；缺乏创意的：lacking originality : banal\nadj. 演化的；导出的：resulting from or employing derivation"
+    },
+    "disregard": {
+        "value": "v. 不理会；不顾；漠视：to pay no attention or heed to; ignore\n【考】disregards；disregarded；disregarding"
+    },
+    "exaggerate": {
+        "value": "v. 夸大，夸张：to represent as greater than is actually the case; overstate\n【考】exaggerate；exaggerates；exaggerated；exaggeration；exaggerating"
+    },
+    "ubiquitous": {
+        "value": "adj. 到处存在的;；普遍存在的：being or seeming to be everywhere at the same time; omnipresent\n【派】ubiquity  n. 无处不在，无所不在\n【考】ubiquitous；ubiquity "
+    },
+    "anomalous": {
+        "value": "adj. 反常的；不规则的：inconsistent with or deviating from what is usual, normal, or expected:irregular, unusual"
+    },
+    "bolster": {
+        "value": "v. 增强（信心）；鼓舞（士气）：to give a boost to\nv. 巩固（地位）；加强；支持：to support with or as if with a bolster : reinforce\n【考】bolster；bolstered"
+    },
+    "commonplace": {
+        "value": "adj. 平凡的；普通的：having no remarkable features, characteristics, or traits; ordinary\nn. 平淡无奇的评论；陈词滥调：a trite or obvious remark; a platitude"
+    },
+    "contentious": {
+        "value": "adj. 有争议的：involving or likely to cause contention; controversial\nadj. 爱争论的；动辄争吵的：given to contention; quarrelsome\n【考】contentious ；contentiousness"
+    },
+    "conventional": {
+        "value": "adj. 传统的，约定的，习惯的；常规的：based on or in accordance with general agreement, use, or practice; customary\n【派】conventionalize  v. 使习俗化\n【考】conventional；unconventional"
+    },
+    "endorse": {
+        "value": "v. （公开地）赞同，支持：to give approval of or support to, especially by public statement; sanction\n【考】endorse；endorses；endorsed；endorsing"
+    },
+    "exhaustive": {
+        "value": "adj. 详尽无遗的；彻底全面的：treating all parts or aspects without omission; thorough\n【派】exhaustiveness  n. 穷尽性；用尽一切\n【考】exhaustive；exhaustiveness"
+    },
+    "heterogeneous": {
+        "value": "adj.不同的；由不同成分组成的；成分混杂的：consisting of dissimilar or diverse ingredients or constituents \nadj. 异种的，不同的：consisting of dissimilar or diverse ingredients or constituents \n【派】heterogeneity  n. 不同， 不同来源\n【考】heterogeneous ；heterogeneously；heterogeneity"
+    },
+    "inconsequential": {
+        "value": "adj. 不重要的；微不足道的；不合逻辑的：of no significance : unimportant; illogical"
+    },
+    "mundane": {
+        "value": "adj. 普通的；平凡的；单调的：relating to, characteristic of, or concerned with commonplaces; ordinary"
+    },
+    "obvious": {
+        "value": "adj. 明显的：easily perceived or understood; quite apparent"
+    },
+    "perplex": {
+        "value": "adj. 使困惑，使费解：to confuse or trouble with uncertainty or doubt\nadj. 使复杂：to make confusedly intricate; complicate\n【派】perplexing   adj. 使人困惑的；令人费解的 \n            perplexity   n. 困惑；困难\n【考】perplex；perplexing"
+    },
+    "trivial": {
+        "value": "adj. 琐碎的；不重要的；微不足道的：of little significance or value"
+    },
+    "circumvent": {
+        "value": "v. 用策略避免；应付：to manage to get around especially by ingenuity or stratagem \nv. 绕行；避开：to go around; bypass\n【考】circumvent ；circumvents；circumvented"
+    },
+    "confound": {
+        "value": "v. 使困惑，使混淆：to cause to become confused or perplexed; to fail to distinguish; mix up\nv. 反驳：refute\n【注】注意和“profound深刻的”区分开来\n【考】confounds；confounded；confounding"
+    },
+    "discount": {
+        "value": "v. 忽视：to leave out of account as being untrustworthy or exaggerated; disregard\nv. 轻视：to underestimate the significance or effectiveness of; minimize\n【考】discount ；discounted"
+    },
+    "ephemeral": {
+        "value": "adj. 短暂的：lasting for a markedly brief time\n【考】ephemeral；ephemerality"
+    },
+    "illuminate": {
+        "value": "v. 阐释；说明:to make understandable; clarify\nv. 启发：to provide intellectual or spiritual enlightenment and understanding\nv. 照亮: to provide or brighten with light.\n【考】illuminate；illuminating；illuminated"
+    },
+    "innocuous": {
+        "value": "adj. 无害的，无毒的：having no adverse effect; harmless\nadj. 平淡无味的；无意得罪人的：not likely to offend or provoke to strong emotion; insipid\n【考】innocuous ；innocuously"
+    },
+    "irrelevant": {
+        "value": "adj. 不重要的：not useful or not relating to a particular situation, and therefore not important\nadj. 不相关的；不切题的：unrelated to the matter at hand"
+    },
+    "meticulous": {
+        "value": "adj. 小心谨慎的；一丝不苟的；注意细节的：marked by extreme or excessive care in the consideration or treatment of details"
+    },
+    "mitigate": {
+        "value": "v. 减轻；缓解；缓和：to moderate (a quality or condition) in force or intensity; alleviate\n【考】mitigate；mitigated；mitigating"
+    },
+    "rudimentary": {
+        "value": "adj. 基本的, 初步的：consisting in first principles : fundamental\nadj. 简陋的，不完善的：of a primitive kind"
+    },
+    "sanguine": {
+        "value": "adj. 乐观的，乐天的：cheerfully confident; optimistic\n【考】sanguine ；sanguinity"
+    },
+    "ambiguous": {
+        "value": "adj. 可作多种解释的；模棱两可的：capable of being understood in two or more possible senses or ways\nadj. 不确定的：doubtful or uncertain\n【派】unambiguous  adj. 不含糊的，清晰的，明确的\n【考】ambiguous；unambiguous"
+    },
+    "arbitrary": {
+        "value": "adj. 专制的，专横的：not restrained or limited in the exercise of power : ruling by absolute authority\nadj. 任意的，武断的：determined by chance, whim, or impulse, and not by necessity, reason, or principle\n【考】arbitrary；arbitrariness"
+    },
+    "convoluted": {
+        "value": "adj. 费解的；复杂难懂的： if you describe a sentence, idea, or system as convoluted, you mean that it is complicated and difficult to understand\nadj. 旋绕的，有褶皱的： having numerous overlapping coils or folds\n【注】convoluted和complicated还是有很大的区别的。convoluted仅仅表示令人难以理解的，费解的，而complicated除了可以表示这个含义，还有物理方面的复杂性，比如说某物的结构的复杂性。\n【考】convoluted；convolution"
+    },
+    "dispute": {
+        "value": "n. 争论：a verbal controversy; a debate\n【考】dispute ；disputed；undisputed"
+    },
+    "elucidate": {
+        "value": "v. 阐明；解释：to make clear or plain, especially by explanation; clarify\n【派】elucidation  n. 说明；阐明\n【考】elucidate；elucidating；elucidation"
+    },
+    "emulate": {
+        "value": "v. 尽力赶上；超越（尤其通过模仿）：to strive to equal or excel, especially through imitation\n【考】emulate ；emulated ；emulation"
+    },
+    "forestall": {
+        "value": "v. 抢先阻止，抢在…之前行动：to delay, hinder, or prevent by taking precautionary measures beforehand\n【考】forestall ；forestalled；forestalling"
+    },
+    "inevitable": {
+        "value": "adj. 不可避免的；无法规避的；必然(发生)的：impossible to avoid or prevent"
+    },
+    "intriguing": {
+        "value": "adj. 引起极大兴趣的：engaging the interest to a marked degree : fascinating"
+    },
+    "precedent": {
+        "value": "n. 先例，前例：an act or instance that may be used as an example in dealing with subsequent similar instances\nn. 判例（在今后类似案件中可作为标准的司法决定）：a judicial decision that may be used as a standard in subsequent similar cases\n【考】precedent；precedents; unprecedented"
+    },
+    "preclude": {
+        "value": "v. 预防，防止：to make impossible, as by action taken in advance; prevent\nv. 排除； 阻止：to exclude or prevent (someone) from a given condition or activity\n【考】preclude ；precluded"
+    },
+    "straightforward": {
+        "value": "adj. 简单明了的；易懂的：simple and easy to understand\nadj. 坦率的，率直的，坦诚的：not circuitous or evasive; honest and frank"
+    },
+    "abstract": {
+        "value": "n. 摘要：a statement summarizing the important points of a text\nadj. 理论上的：not applied or practical; theoretical\nadj. 抽象的：thought of or stated without reference to a specific instance\nadj. 抽象主义的，抽象派的：having an intellectual and affective artistic content\nv. 提取；抽取：if you abstract something from a place, you take it from there\n【派】abstractness  n.抽象；abstraction  n.抽象；抽象主义\n【考】abstract；abstracts；abstracted；abstraction"
+    },
+    "aesthetic": {
+        "value": "n. 美学；审美学：the formal study of art, especially in relation to the idea of beauty\n【考】aesthetic；aesthetics"
+    },
+    "arcane": {
+        "value": "adj. 晦涩难懂的；神秘的：known or understood by only a few；mysterious"
+    },
+    "belie": {
+        "value": "v. 显示为虚假：to show to be false\nv. 与…相对立；与…相矛盾：to be counter to; contradict\nv. 错误地描述；掩饰：to give an inaccurate view of by representing falsely or misleadingly\nv. 不足以证明；未能实现：fail to justify or fulfil (a hope, promise etc)\n【例】Practical experience belies this theory  实际经验证明这个理论是错误的 \n【注】在考试中，要注意有时会出现belying，也就是belie的现在分词。"
+    },
+    "compelling": {
+        "value": "adj. 令人信服的；有说服力的：convincing \nadj. 紧迫的，急需关注的：urgently requiring attention\nadj. 非常有趣的；很有吸引力的： If you describe something such as a film or book, or someone's appearance, as compelling, you mean you want to keep looking at it or reading it because you find it so interesting"
+    },
+    "conspicuous": {
+        "value": "adj.显眼的；引人注目的：obvious to the eye or mind; attracting attention\n【派】conspicuousness   n. 显然，明显性"
+    },
+    "contradict": {
+        "value": "v. 反驳；否认；驳斥：to assert or express the opposite of (a statement); to deny the statement of\nv.与…矛盾；同… 抵触：if one statement or piece of evidence contradicts another, the first one makes the second one appear to be wrong\nv.违背；与…背道而驰： if one policy or situation contradicts another, there is a conflict between them, and they cannot both exist or be successful\n【考】contradict；contradicted；contradictions"
+    },
+    "deceptive": {
+        "value": "adj. 迷惑的，骗人的: tending or having power to deceive : misleading"
+    },
+    "deference": {
+        "value": "n. 尊重：courteous respect\nn. 遵从，听从：submission or courteous yielding to the opinion, wishes, or judgment of another\n【派】deferential adj. 恭敬的；惯于顺从的\n【注】注意搭配：in deference to  出于对某人/某事物的尊重而遵从\n【考】deference ；deferential"
+    },
+    "disingenuous": {
+        "value": "adj. 不诚恳的；不坦率的；狡猾的：not straightforward or candid; crafty"
+    },
+    "erudite": {
+        "value": "adj. 博学的；有学问的：possessing or displaying erudition : learned\n【派】erudition  n. 博学\n【考】erudite；erudition"
+    },
+    "fastidious": {
+        "value": "adj. 挑剔的，难以取悦的：having high and often capricious standards : difficult to please \nadj. 讲究的，一丝不苟的，注重细节的： excessively scrupulous or sensitive, especially in matters of taste or propriety\n【考】fastidious ；fastidiousness"
+    },
+    "hinder": {
+        "value": "v. 阻碍；妨碍；耽搁：to obstruct or delay the progress of\n【考】hinder；hindered"
+    },
+    "indispensable": {
+        "value": "adj. 必不可少的；不可或缺的：not to be dispensed with; essential."
+    },
+    "indolence": {
+        "value": "n. 懒散，懒惰：habitual laziness; sloth\n【派】indolent  adj. 懒惰的\n【考】indolence；indolent"
+    },
+    "lucrative": {
+        "value": "adj. 获利的；有利润的：producing wealth; profitable"
+    },
+    "provocative": {
+        "value": "adj. 挑衅的；煽动的；激怒的：serving or tending to provoke, excite, or stimulate \n【考】provocative；provocations"
+    },
+    "reflect": {
+        "value": "v. 反映：to form an image of (an object); mirror\nv. 沉思；深思：to think seriously"
+    },
+    "repudiate": {
+        "value": "v. 否定，否认：to reject emphatically as unfounded, untrue, or unjust; to declare not to be true\nv. 拒绝，拒绝接受：to refuse to recognize or acknowledge; to show unwillingness to accept\n【派】repudiation  n. 否认；拒绝承认\n【考】repudiate ；repudiates；repudiated；repudiation"
+    },
+    "sophisticated": {
+        "value": "adj. (机器、装置等)高级的，精密的;(方法)复杂的：highly complicated or developed : complex\nadj. 老于世故的；见过世面的：having a refined knowledge of the ways of the world cultivated especially through wide experience\nadj. 深奥微妙的：suitable for or appealing to the tastes of sophisticates; intellectually appealing\n【派】unsophisticated  adj. 简单的，没有经验的\n               sophistication  n. 精明老练，复杂\n【考】sophisticated ；unsophisticated  ；sophistication  "
+    },
+    "spontaneous": {
+        "value": "adj.（行为）自然的，自发的：arising from a natural inclination or impulse and not from external incitement or constraint\nadj. 自然的，自发的（指由于内部原因而非外界影响所引起的）：happening or arising without apparent external cause; self-generated\n【考】spontaneous；spontaneously；unspontaneous"
+    },
+    "superficial": {
+        "value": "adj. 表面的，一知半解的，不深入的：concerned with or comprehending only what is apparent or obvious; shallow\n【派】superficiality  n. 表面性的事物；表面情况；表面性；浅薄"
+    },
+    "technical": {
+        "value": "adj. 专门的；专业的：used in or peculiar to a specific field or profession; specialized"
+    },
+    "advance": {
+        "value": "v. 前进：to move forward\nv. 提前（未来事件的日期）；使（未来事件）提前发生：to cause to occur sooner\nv. 促进，推动（事业、利益等）；使加速：If you advance a cause, interest, or claim, you support it and help to make it successful\nv.  提出（理论、论点）：to put forward; propose or suggest\nn. 预付，贷款：a provision of something (as money or goods) before a return is received also : the money or goods supplied\nv. 贷给；预付；预支：if you advance someone a sum of money, you lend it to them, or pay it to them earlier than arranged\nn. 进步；进展：a forward move, as toward an objective; progress\n【注】注意区分短语：”in advance 提前;事先”和”in advance of 在…的前面；在…之前”。例句：”The subject of the talk is announced a week in advance. 会谈的主题已提前一周宣布” 和 ”I had asked everyone to submit questions in advance of the meeting. 我已请每个人在会议之前提交问题。”\n【考】advances ；advanced；advancing"
+    },
+    "ameliorate": {
+        "value": "v. 改善, 变好：to make or become better; improve\n【派】amelioration  n. 改善；改良\n【考】ameliorate；ameliorates；ameliorated；ameliorable"
+    },
+    "archaic": {
+        "value": "adj. 古代的：of relating to, or characteristic of an earlier or more primitive time\nadj. 过时的，陈旧的：no longer current or applicable"
+    },
+    "arduous": {
+        "value": "adj. 艰巨的，费力的：hard to accomplish or achieve; marked by great labor or effort\nadj. 困难的：hard to accomplish or achieve : difficult\n【考】arduous；arduousness"
+    },
+    "commensurate": {
+        "value": "adj. 同量的：of the same size, extent, or duration as another\nadj. 成比例的，相称的：corresponding in size or degree; proportionate\n【派】incommensurate  adj. 不成比例的，不相称的\n【考】commensurate；incommensurate"
+    },
+    "compromise": {
+        "value": "n. 折中；妥协；让步：a settlement of differences in which each side makes concessions\nv. 危害，连累：to expose or make liable to danger, suspicion, or disrepute\nn. 危害，沦陷：a concession to something detrimental or pejorative\n【派】compromised  adj. 危害的，妥协的\n【考】compromise；compromises；compromised"
+    },
+    "confine": {
+        "value": "v. 限制：to keep within bounds; restrict\nv. 监禁;关押；禁闭： to shut or keep in, especially to imprison\n【考】confined；confining"
+    },
+    "consolidate": {
+        "value": "v. 联合，合并： to unite into one system or whole; combine\nv. 巩固，加强： to make strong or secure; strengthen\n【派】consolidation  n.巩固；合并\n【考】consolidate；consolidates；consolidated"
+    },
+    "corroborate": {
+        "value": "v. 证实；确证：to strengthen or support with other evidence; make more certain\n【派】corroboration   n. 证实，支持\n【考】corroborate；corroborating"
+    },
+    "debunk": {
+        "value": "v. 揭穿: to expose or ridicule the falseness, sham, or exaggerate\nd claims of\n【考】debunk；debunked；debunking"
+    },
+    "derive": {
+        "value": "v. 获得；取得；得到：to obtain or receive from a source\nv. （使）起源于；（使）来自：to develop or come from something else\n【考】derive；derives；derived"
+    },
+    "disinterest": {
+        "value": "adj. 公正客观的，无私欲的： free from selfish motive or interest : unbiased\nadj. 不感兴趣的；不关心的；冷漠的：not interested; indifferent\n【考】disinterest ；disinterested；disinterestedness"
+    },
+    "distort": {
+        "value": "v. 歪曲；扭曲；曲解： to give a false or misleading account of; misrepresent\n【派】distortion   n. 扭曲，歪曲；distorted   adj. 歪曲的，扭曲的\n【考】distort；distorted；distortions"
+    },
+    "downplay": {
+        "value": "v. 对…轻描淡写；使轻视；贬低：to minimize the significance of; play down\n【考】downplay；downplayed；downplaying"
+    },
+    "dubious": {
+        "value": "adj.  引起怀疑的；可疑的：arousing doubt; doubtful\nadj.  不确定的，充满不定或怀疑的：fraught with uncertainty or doubt; undecided\nadj.  （荣誉、名声等）不好的，不光彩的：a dubious honor etc is the opposite of an honor - used about something unpleasant that happens\n【注】GRE官方填空真题中，曾经出现过这样的题目：It is his dubious distinction to have proved what nobody would think of denying, that Romero at the age of sixty-four writes with all the characteristics of maturity."
+    },
+    "flexible": {
+        "value": "adj. 易变通的；适应性强的；灵活的：responsive to change; adaptable\nadj. 易受影响的；温顺的：susceptible to influence or persuasion; tractable\n【派】flexibility  n. 适应性，灵活\n【考】flexible ；flexibility"
+    },
+    "frustrate": {
+        "value": "v. 阻碍；阻挠： to prevent from accomplishing a purpose or fulfilling a desire; thwart\n【考】frustrate；frustrated；frustrating"
+    },
+    "hearten": {
+        "value": "v. 鼓起勇气，激励：to give strength, courage, or hope to; encourage\n【派】heartened  adj. 深受鼓舞的，感到振奋的\n      heartening  adj. 鼓舞人心的，振奋人心的\n【注】注意和“hearken v. 倾听，关注”区别开来\n【考】heartening；heartened"
+    },
+    "illusory": {
+        "value": "adj. 幻觉的；虚假的；不切实际的：produced by, based on, or having the nature of an illusion; deceptive"
+    },
+    "immutable": {
+        "value": "adj. 永恒的，不变的：not subject or susceptible to change\n【近】inalterable, inflexible, invariable, ironclad, rigid, unalterable, unchangeable"
+    },
+    "inexplicable": {
+        "value": "adj. 无法说明的；费解的：difficult or impossible to explain or account for\n【派】explicable  adj. 可解释的，可说明的\n【考】inexplicable；explicable "
+    },
+    "justify": {
+        "value": "v. 证明（决定、行为或想法）正当；表明…必要：to prove or show to be just, right, or reasonable\n【考】justify；justifies；justified；justifiable；unjustified"
+    },
+    "mask": {
+        "value": "v. 隐藏，遮掩(事实)：to cover up\nv. 掩盖，使不被觉察：to make indistinct or blurred to the senses\n【考】mask；masks；masked"
+    },
+    "meager": {
+        "value": "adj. 不足的，缺乏的：deficient in quantity, fullness, or extent; scanty.\nadj. 贫乏的：deficient in richness, fertility, or vigor; feeble"
+    },
+    "obviate": {
+        "value": "v. 消除；排除；使成为不必要：to anticipate and dispose of effectively; render unnecessary \n【考】obviate；obviates；obviating"
+    },
+    "orthodox": {
+        "value": "adj. 正统的；规范的；广为接受的：orthodox beliefs, methods, or systems are ones which are accepted or used by most people  \nadj. 传统的，循规蹈矩的：adhering to what is commonly accepted, customary, or traditional"
+    },
+    "overshadow": {
+        "value": "v. 使显得不重要，使相形见拙：to make insignificant by comparison; dominate\nv.使模糊；使变暗：to cast a shadow over; darken or obscure\n【注】考生要注意和foreshadow区别。foreshadow意为：预兆，预见：prefigure\n【考】overshadow；overshadowed"
+    },
+    "pedestrian": {
+        "value": "adj. 平淡无奇的，没有想象力的；一般的：undistinguished; ordinary；commonplace, unimaginative"
+    },
+    "perpetuate": {
+        "value": "v. 使永存，使不朽：to cause to continue indefinitely; make perpetual\n【考】perpetuate ；perpetuating"
+    },
+    "prescience": {
+        "value": "n. 预知，预见：knowledge of actions or events before they occur; foresight\n【考】prescient；prescience"
+    },
+    "redundant": {
+        "value": "adj. 多余的，冗长的：exceeding what is necessary or natural; superfluous\nadj. 啰嗦的，冗长的：using more words than necessary \n【派】redundancy  n. 过多，冗余，过剩"
+    },
+    "reinforce": {
+        "value": "v. 加强；增强：to give more force or effectiveness to; strengthen\nv. 给予…更多支持；为…提供更多证据：if something reinforces an idea or point of view, it provides more evidence or support for it\n【考】reinforced；reinforcing"
+    },
+    "robust": {
+        "value": "adj. 强健的；健壮的；坚固的；结实的：powerfully built; sturdy\n【注】大家熟悉的“乐百氏”就是来源该词。"
+    },
+    "susceptible": {
+        "value": "adj. 易受...影响的：easily influenced or affected\nadj. 易受感染的：Likely to be affected with\n【派】susceptibility  n. 易受影响；易受感染的性质或状态\n【考】susceptible；susceptibility"
+    },
+    "tenacious": {
+        "value": "adj. 坚定的，坚决的：holding or tending to hold persistently to something, such as a point of view\nadj. 持久的：tending to retain; retentive\n【考】tenacious；tenacity"
+    },
+    "undermine": {
+        "value": "v. 削弱，损害：to weaken, injure, or impair, often by degrees or imperceptibly; sap"
+    },
+    "antithetical": {
+        "value": "adj. 相反的；对立的；不相容的：Something that is antithetical to something else is the opposite of it and is unable to exist with it.\n【派】antithesis  n. 相反；对立\n【考】antithetical ；antithesis"
+    },
+    "atypical": {
+        "value": "adj. 反常的；不具代表性或同类特性的：not conforming to type; unusual or irregular"
+    },
+    "benign": {
+        "value": "adj. 和蔼的；温和的；慈祥的：of a kind and gentle disposition\nadj. 没有危害的，温和的：showing gentleness and mildness；A benign substance or process does not have any harmful effects\nadj. 有利的，有益的：tending to exert a beneficial influence; favorable\nadj. 良性的，非恶性的：of no danger to health; not recurrent or progressive; not malignant\nadj. （条件、环境）良好的，宜人的：benign conditions are pleasant or make it easy for something to happen\n【派】benignity  n.温和；善举；善行；仁慈"
+    },
+    "cautious": {
+        "value": "adj. 谨慎的；小心的：showing or practicing caution; careful.\n【派】caution  n. 谨慎小心\n【考】cautious；cautiousness"
+    },
+    "circumspect": {
+        "value": "adj. 细心的，慎重的：heedful of circumstances and potential consequences; prudent"
+    },
+    "commend": {
+        "value": "v. 推荐：to represent as worthy, qualified, or desirable; recommend\nv. 表示赞同；称赞：to express approval of; praise\nv. 被接受；得到认可 ：if something commends itself to you, you approve of it\n【考】commending；commended"
+    },
+    "constrain": {
+        "value": "v. 限制，约束：to keep within close bounds; confine\nv. 抑制；克制：to inhibit or restrain; hold back\n【考】constrain ；constrains；constrained；constraining"
+    },
+    "daunting": {
+        "value": "adj. 使人畏惧的；令人胆怯的；让人气馁的： something that is daunting makes you feel slightly afraid or worried about dealing with it"
+    },
+    "deleterious": {
+        "value": "adj. 有害的；造成伤害的: having a harmful effect; injurious."
+    },
+    "diffidence": {
+        "value": "n. 缺乏自信；胆怯： the quality or state of being diffident; timidity or shyness."
+    },
+    "disparate": {
+        "value": "adj. 不同的; 异类的：fundamentally distinct or different in kind; entirely dissimilar\n【注】该词和disparage仅仅相差一个字母t和g，考生可以这样记忆：dis:不同，假设t=tong，dis+t就是“不同”了嘛，另外一个单词即是贬低。\n【考】disparate；disparateness"
+    },
+    "esoteric": {
+        "value": "adj. 深奥的；难懂的；常人难以理解的：intended for or understood by only a particular group"
+    },
+    "established": {
+        "value": "adj. 已被认可的；已被接受的：if you use established to describe something such as an organization, you mean that it is officially recognized or generally approved of because it has existed for a long time"
+    },
+    "exact": {
+        "value": "adj. 准确的；精确的：strictly and completely in accord with fact; not deviating from truth or reality\nadj. 一丝不苟的；严谨的：marked by thorough consideration or minute measurement of small factual details\nv. 强求：to call for forcibly or urgently and obtain\nv. 对…有害；使…付出代价：if something exacts a high price, it has a bad effect on a person or situation\nv. 实施，施加（报复）：if someone exacts revenge on a person, they have their revenge on them\n【派】exactitude  n. 精确，准确，严谨\n【考】exacted；exactitude"
+    },
+    "exacting": {
+        "value": "adj. 苛求的，严格的；难以取悦的：requiring careful attention and precision \nadj. 艰巨的，吃力的：tryingly or unremittingly severe in making demands"
+    },
+    "experimental": {
+        "value": "adj. 实验的；根据实验的：relating to or based on experiment\n【考】experiment ；experimental；experimentation"
+    },
+    "explicit": {
+        "value": "adj. 明确的；清晰的：fully and clearly defined or formulated\nadj. 直言的；坦率的；坦诚的：forthright and unreserved in expression"
+    },
+    "extraneous": {
+        "value": "adj. 无关的，离题的：having no relevance \nadj. 外来的，外界的：coming from the outside\nadj. 次要的，非主要因素的：not forming an essential or vital part "
+    },
+    "foster": {
+        "value": "v. 养育；抚育：to bring up; nurture\nv. 促进，培养：to promote the growth and development of; cultivate\n【考】foster；fosters ；fostered；fostering"
+    },
+    "frequent": {
+        "value": "adj. 经常的：occurring or appearing quite often or at close intervals\nadj. 常到；常去；常出入于：to pay frequent visits to; be in or at often\n【考】frequent；infrequent；frequency"
+    },
+    "impetuous": {
+        "value": "adj. 急躁的;冲动的：characterized by sudden and forceful energy or emotion; impulsive and passionate\n【派】impetuosity  n. 急躁的行动(或情绪)；冲动\n【考】impetuous；impetuously；impetuosity"
+    },
+    "implement": {
+        "value": "n. 工具，器械： a tool or an instrument used in doing work.\nv. 履行；实施：to put into practical effect; carry out\n【派】implementation  n. 履行；成就；完成\n【考】implemented；implementation"
+    },
+    "incontrovertible": {
+        "value": "adj. 毋庸置疑的，不可辩驳的: impossible to dispute, unquestionable"
+    },
+    "indiscriminate": {
+        "value": "adj. 不加区别的；不加选择的：not making or based on careful distinctions; unselective\nadj. 随意的；偶然的：random; haphazard\n【派】undiscriminating  adj. 不加区别的，缺乏判断力的\n【考】indiscriminate；undiscriminating"
+    },
+    "irascible": {
+        "value": "adj. 易怒的；性情暴躁的：marked by hot temper and easily provoked anger\n【派】irascibly  adv. 易怒地； irascibility  n. 易怒\n【考】irascible；irascibility"
+    },
+    "irritate": {
+        "value": "v. 激怒：to rouse to impatience or anger\n【派】irritable  adj. 易怒的；急躁的\n【考】irritated；irritating；irritation"
+    },
+    "manipulated": {
+        "value": "v. 操作，处理：to operate or control by skilled use of the hands; handle\nv. 操纵：to tamper with or falsify for personal gain\nv. 巧妙地控制：to influence or manage shrewdly or deviously\n【考】manipulating；manipulation"
+    },
+    "mimic": {
+        "value": "v. 嘲弄；恶搞：to copy or imitate so as to ridicule; mock\nv. 模仿：to copy or imitate closely, especially in speech, expression, and gesture; ape\n【考】mimic ；mimics"
+    },
+    "novel": {
+        "value": "adj.新的；新奇的；新颖的：strikingly new, unusual, or different\n【注】该词的名词释义为：小说"
+    },
+    "onerous": {
+        "value": "adj. （任务）繁重的，艰巨的，麻烦的：involving, imposing, or constituting a burden : troublesome"
+    },
+    "opaque": {
+        "value": "adj.费解的；难懂的；晦涩的：hard to understand or explain ; so obscure as to be unintelligible\nadj. 不透明的，不透光的：impenetrable by light; neither transparent nor translucent"
+    },
+    "overwhelming": {
+        "value": "adj. 极强烈的；势不可挡的；令人不知所措的：extreme, great; If something is overwhelming, it affects you very strongly, and you do not know how to deal with it  \nadj. 巨大的，压倒性的： overpowering in effect or strength\n【考】overwhelmed；overwhelming"
+    },
+    "paradox": {
+        "value": "n. 悖论；自相矛盾的说法；似矛盾而（可能）正确的说法：a seemingly contradictory statement that may nonetheless be true\nn. 自相矛盾；有矛盾特点的情况：one exhibiting inexplicable or contradictory aspects\n【派】paradoxically   adv. 似非而是地；反常地；悖理地\n【考】paradox；paradoxes；paradoxical；paradoxically"
+    },
+    "parallel": {
+        "value": "adj. 相同的，相似的：having comparable parts, analogous aspects, or readily recognized similarities\nadj. 具有相同倾向的，同向的： having the same tendency or direction\n【考】parallel；parallels；unparalleled"
+    },
+    "paralyze": {
+        "value": "v. 制止，破坏：to impair the progress or functioning of; make inoperative or powerless\n【考】paralyze；paralyzes；paralyzing"
+    },
+    "precarious": {
+        "value": "adj. 不稳定的，危险的：dangerously lacking in security or stability\nadj. 不确定的，未证实的：based on uncertain, unwarranted, or unproved premises\n【考】precarious；precariously"
+    },
+    "precede": {
+        "value": "v. 发生在…之前；先于：to come, exist, or occur before in time\n【考】precede ；preceded"
+    },
+    "problematic": {
+        "value": "adj. 成问题的；难以解决的：posing a problem; difficult to solve\nadj. 有疑问的；值得怀疑的：open to doubt; debatable\nadj. 未知的；未解决或含糊的：not settled; unresolved or dubious\n【考】problematic；unproblematic"
+    },
+    "promote": {
+        "value": "v. 使晋升，提拔：to raise to a more important or responsible job or rank\nv. 促进，推进：to contribute to the progress or growth of; further\nv. 提倡，倡议：to urge the adoption of; advocate;to try to persuade people to support or use something\n【派】promotion  n. 促进；晋升；升职\n【考】promote ；promotes；promoted"
+    },
+    "punctilious": {
+        "value": "adj. 谨小慎微的，一丝不苟的：strictly attentive to minute details of form in action or conduct\n【派】punctiliousness  n. 一丝不苟；谨慎\n【考】punctilious；punctiliousness"
+    },
+    "resolve": {
+        "value": "v. 解决：to find a solution to; solve\nv. 决定，下定决心：to make a firm decision about\nv. 解开（疑虑），解决：to remove or dispel (doubts); to deal with successfully : clear up\n【考】resolve ；resolves；resolved"
+    },
+    "respite": {
+        "value": "n. 间歇：a usually short interval of rest or relief\nn. 暂缓，暂延：a period of temporary delay"
+    },
+    "superfluous": {
+        "value": "adj. 多余的，过剩的，不必要的：exceeding what is sufficient or necessary: unnecessary"
+    },
+    "tendentious": {
+        "value": "adj. 有偏见的；有争议的：marked by a tendency in favor of a particular point of view :biased\n【派】tendentiousness  n.偏见\n【考】tendentious；tendentiousness"
+    },
+    "thorough": {
+        "value": "adj. 彻底的，完全的：carried through to completion : exhaustive\nadj. 仔细的，严谨的：painstakingly accurate or careful\nadj. 详细的，详尽的：marked by full detail\n【考】thorough；thoroughly"
+    },
+    "untimely": {
+        "value": "adj. 不合时宜的，不适时的：at an inopportune time : unseasonably\nadj. 过早的；提早的；未到期的：before the due, natural, or proper time : prematurely\n【考】timely"
+    },
+    "accessible": {
+        "value": " adj. 易理解的；易取得的；易受影响的：capable of being reached, influenced, understood or used"
+    },
+    "adapt": {
+        "value": "v. （使）适应，适合：to make fit (as for a specific or new use or situation) often by modification\nv. 修改，改编：to alter or modify a text\n【考】adapted；adaptive ；adaptable"
+    },
+    "ambivalent": {
+        "value": "adj.摇摆不定的；犹豫不决的：if you say that someone is ambivalent about something, they seem to be uncertain whether they really want it, or whether they really approve of it"
+    },
+    "anachronistic": {
+        "value": "adj. 时代错误的；年代误植的（指所叙人、事与时代不符的错误）：of relating to an error in chronology especially a chronological misplacing of persons, events, objects, or customs in regard to each other\nadj. 过时的：out of date or old-fashioned，or a person or a thing that is chronologically out of place especially\n【派】anachronism  n. 过时的事；时代错误（所叙事与时代不符的错误）"
+    },
+    "apathetic": {
+        "value": "adj. 冷漠的，无动于衷的：having or showing little or no feeling or emotion\nadj. 无兴趣的，不关心的：having little or no interest or concern"
+    },
+    "articulate": {
+        "value": "adj.(v.) 善于表达的，表达清晰的：expressing oneself readily, clearly, or effectively\nadj.(v.) 发音清晰的，清楚的：composed of distinct, meaningful syllables or words, as human speech\n【考】articulate；articulated"
+    },
+    "beneficial": {
+        "value": "adj. 有益的，有利的：conferring benefits: conducive to personal or social well-being"
+    },
+    "chaotic": {
+        "value": "adj. 混乱的，无秩序的：something that is chaotic is in a state of complete disorder and confusion"
+    },
+    "circumscribe": {
+        "value": "v. 约束；制约；限制：to limit narrowly; restrict\n【考】circumscribed "
+    },
+    "clandestine": {
+        "value": "adj. 偷偷摸摸的，暗地里的，秘密的：kept or done in secret, often in order to conceal an illicit or improper purpose"
+    },
+    "concede": {
+        "value": "v. 承认，承认…属实：to acknowledge, often reluctantly, as being true, just, or proper; admit\nv. 作出让步；屈服：to make a concession; yield\nv. 给予；授予：to yield or grant (a privilege or right, for example)\n【考】concede ；concedes；conceded"
+    },
+    "conciliatory": {
+        "value": "adj.愿意和解的；调停的；安抚的： when you are conciliatory in your actions or behaviour, you show that you are willing to end a disagreement with someone"
+    },
+    "condemn": {
+        "value": "v. 谴责，责备： to express strong disapproval of\nv. 对…作出判决；宣判：to pronounce judgment against; sentence\n【派】condemnation  n. 谴责；定罪\n【考】condemn；condemns；condemned"
+    },
+    "congenial": {
+        "value": "adj. 性格温和的，友好的或好交际的：of a pleasant disposition; friendly and sociable \nadj. 相宜的：suited to one's needs or nature; agreeable\n【考】congeniality"
+    },
+    "contradictory": {
+        "value": "adj. 互相矛盾的；相互对立的： if two or more facts, ideas, or statements are contradictory, they state or imply that opposite things are true"
+    },
+    "dearth": {
+        "value": "n. 缺乏；不足：a scarce supply; a lack"
+    },
+    "deliberate": {
+        "value": "adj. 深思熟虑的：arising from or marked by careful consideration\nadj. 故意的；蓄意的；早有计划的：done with or marked by full consciousness of the nature and effects; intentional\nadj. 从容的；不慌不忙的；审慎的；小心翼翼的：unhurried in action, movement, or manner, as if trying to avoid error\nv. 慎重考虑，仔细思考：to think carefully and often slowly, as about a choice to be made\n【考】deliberate；deliberation"
+    },
+    "deteriorate": {
+        "value": "v. 恶化；变坏；衰退：to grow worse; degenerate\n【派】deterioration  n. 恶化，衰退\n【考】deteriorate；deteriorating；deterioration  "
+    },
+    "detrimental": {
+        "value": "adj. 有害的；不利的：causing damage or harm; injurious\n【考】detriment；detrimental"
+    },
+    "didactic": {
+        "value": "adj. 教导的；教诲的；(尤指)道德说教的：intended to teach people something, especially a moral lesson\nadj. 好灌输的；好说教的：eager to teach people things or give instructions\n【派】didacticism  n.说教，教导主义\n【考】didactic；didacticism"
+    },
+    "diffident": {
+        "value": "adj. 缺乏自信的；羞怯的和胆小的: lacking or marked by a lack of self-confidence; shy and timid "
+    },
+    "diffuse": {
+        "value": "v. 扩散；散布：to spread about or scatter; disseminate\nadj. 罗嗦的；唠叨的：being at once verbose and ill-organized; wordy\n【派】diffusion  n. 冗长，扩散\n【考】diffusion；diffuse；diffused"
+    },
+    "dwindle": {
+        "value": "v. 减少，缩小：to become gradually less until little remains\n【考】dwindles；dwindling"
+    },
+    "egalitarian": {
+        "value": "adj. 主张人人平等的；平等主义的：affirming, promoting, or characterized by belief in equal political, economic, social, and civil rights for all people"
+    },
+    "elusive": {
+        "value": "adj. 难以得到的；难以描述的；想不起来的；难以实现的：difficult to find, describe, remember, or achieve"
+    },
+    "embrace": {
+        "value": "v. 欣然接受，支持：to take up especially readily or gladly\nv. 包括，接纳：to take in or include as a part, item, or element of a more inclusive whole\n【考】embrace；embraced"
+    },
+    "eminent": {
+        "value": "adj. 杰出的，卓越的：outstanding, as in character or performance; distinguished, prominent\n【派】eminence  n. 杰出，卓越\n【考】eminence"
+    },
+    "empirical": {
+        "value": "adj. 经验主义的；以经验为依据的：relying on or derived from observation or experiment\n【派】empiricism  n. 经验主义"
+    },
+    "enigmatic": {
+        "value": "adj. 神秘的；谜一般的；费解的：puzzling, mysterious and difficult to understand"
+    },
+    "entail": {
+        "value": "v. 使…必然发生;势必造成；使…成为必需:If one thing entails another, it involves it or causes it.\n【考】entails；entailed"
+    },
+    "equivocal": {
+        "value": "adj. 模棱两可的；含糊其词的：open to two or more interpretations and often intended to mislead; ambiguous\nadj. 难以理解的，难以解释的：difficult to understand, interpret, or explain\n【派】equivocation  n. 含糊其词；说模棱两可的话\n【考】equivocal；unequivocal"
+    },
+    "exhilarate": {
+        "value": "v. 使振奋，激励：to cause to feel happily refreshed and energetic; elate\nv. 鼓舞；刺激：to invigorate; stimulate\n【派】exhilarating  adj. 令人兴奋的；\n               exhilaration  n. 愉快的心情；高兴\n【考】exhilarating；exhilarated"
+    },
+    "expedite": {
+        "value": "v. 加速…的进程；促进：to speed up the progress of; facilitate\n【派】expeditious  adj. 快速有效的；快速进行的\n【考】expedite；expediting；expeditious"
+    },
+    "extend": {
+        "value": "v. 扩大：to enlarge the area, scope, or range of\nv. 扩及；波及；包括：if something extends to a group of people, things, or activities, it includes or affects them\n【考】extend；extends；extended"
+    },
+    "facilitate": {
+        "value": "v. 使容易；促进：to make easy or easier\n【考】facilitating；facilitates"
+    },
+    "forbear": {
+        "value": "v. 忍耐；克制；避免：to refrain from; resist\n【派】forbearance  n. 忍耐；克制；避免\n【考】forbears；forbearing；forbearance"
+    },
+    "iconoclastic": {
+        "value": "adj. 有悖传统信仰的：characterized by attack on established beliefs or institutions\n【派】iconoclasm  n. 反对传统主义；\n      iconoclast   n. 打破传统信仰(或习惯)者\n【考】iconoclastic ；iconoclasm"
+    },
+    "improvise": {
+        "value": "v. 即兴表演；即兴演奏；即兴创作：to invent, compose, or recite without preparation\nv. 临时做；临时凑成：to invent, compose, or recite without preparation\n【派】improvisation  n. 即席创作；临时应变\n【考】improvise；improvises；improvising"
+    },
+    "innovation": {
+        "value": "n. 新事物；新方法：a new idea, method, or device : novelty \nn. 革新，创新：the act of introducing something new.\n【派】innovative  adj. 创新的；革新的"
+    },
+    "intelligible": {
+        "value": "adj. 可理解的；明白易懂的：capable of being understood\n【考】intelligible；unintelligible"
+    },
+    "intransigent": {
+        "value": "adj. 不妥协的；不让步的；不调和的：refusing to moderate a position, especially an extreme position; uncompromising\n【派】intransigence  n. 不妥协；不让步；不调和"
+    },
+    "judicious": {
+        "value": "adj. 明智的；有见地的；审慎的：having or exhibiting sound judgment; prudent\n【派】judiciously  adv.  明断地；明智而审慎地\n【考】judicious；judiciousness"
+    },
+    "justification": {
+        "value": "n. 正当理由；合理的解释： an acceptable reason or explanation for it."
+    },
+    "legitimate": {
+        "value": "v. 使合法： to legitimize\nadj. 合法的：within, allowed by, or sanctioned by the law\nadj. 合理的：based on logical reasoning; reasonable"
+    },
+    "mercenary": {
+        "value": "adj. 唯利是图的：motivated solely by a desire for monetary or material gain"
+    },
+    "methodical": {
+        "value": "adj. 有板有眼的；有条不紊的；井然有序的：arranged or proceeding in regular, systematic order\n【考】methodical；methodically"
+    },
+    "mysterious": {
+        "value": "adj. 神秘的，难解的：difficult to explain or understand"
+    },
+    "nebulous": {
+        "value": "adj. 模糊不清的：lacking definite form or limits; vague\n【注】该词实际来自天文阅读中经常考的：nebula 星云。"
+    },
+    "neglect": {
+        "value": "v. 不注意，忽略：to pay little or no attention to; fail to heed; disregard\nv. 不予重视；忽视：to fail to care for or attend to properly\nv. 疏忽；疏漏：to fail to do or carry out, as through carelessness or oversight\n【考】neglect ；neglects；neglected"
+    },
+    "obfuscate": {
+        "value": "v. 混淆，使混乱，使困惑：to make so confused or opaque as to be difficult to perceive or understand.\nv. 使模糊；使变暗：to render indistinct or dim; darken\n【派】obfuscation  n. 模糊，混乱\n【考】obfuscate；obfuscating；obfuscation"
+    },
+    "permanent": {
+        "value": "adj. 永久的，不变的：not expected to change in status, condition, or place\nadj. 永久的，永恒的： lasting or remaining without essential change\n【考】permanent；permanently"
+    },
+    "pragmatic": {
+        "value": "adj. 讲求实效的；实用的；务实的：dealing or concerned with facts or actual occurrences; practical\n【注】该词在考试中经常和idealistic相对。"
+    },
+    "praise": {
+        "value": "v. 赞扬，称赞：to express warm approbation of, commendation for, or admiration for\nn. 赞扬，表扬，称赞：expression of approval, commendation, or admiration"
+    },
+    "quixotic": {
+        "value": "adj. 幻想的；不切实际的；空想的：caught up in the pursuit of unreachable goals; idealistic without regard to practicality\nadj. 多变的；易冲动的：capricious; impulsive; unpredictable "
+    },
+    "relevant": {
+        "value": "adj. 相关的；相应的；有重要性的：having significant and demonstrable bearing on the matter at hand"
+    },
+    "remedy": {
+        "value": "n. 补救方法；解决方法，解决良方：something that corrects an evil, a fault, or an error\nn. 药品；治疗方法：a medicine, application, or treatment that relieves or cures a disease\nv. 纠正；补救；矫正：to set right; remove, rectify, or counteract"
+    },
+    "restore": {
+        "value": "v. 恢复：to bring back into existence or use; reestablish\nv. 使恢复，使康复，使复原：to bring back to an original condition\nv. 归还，交还，返还：to make restitution of; give back\n【派】restoration  n. 恢复；修复\n【考】restore；restorative"
+    },
+    "resurgence": {
+        "value": "n. 重新兴起，复苏：a restoration to use, acceptance, activity, or vigor; a revival"
+    },
+    "ridicule": {
+        "value": "v. 嘲笑，愚弄：words or actions intended to evoke contemptuous laughter at or feelings toward a person or thing\n【考】ridicule ；ridiculed"
+    },
+    "sage": {
+        "value": "adj. 贤明的，睿智的，博学多识的：proceeding from or marked by wisdom and calm judgment\nn. 哲人；智者；圣人：one venerated for experience, judgment, and wisdom\n【派】sagacious   adj. 聪慧的，睿智的\n【考】sage；sagacious   "
+    },
+    "salient": {
+        "value": "adj. 极度显眼的，显著的：strikingly conspicuous; prominent\n【注】salience  n. 显著，突出； sapient  adj. 聪明的，有洞察力的\n【考】salient；salience"
+    },
+    "scrutinize": {
+        "value": "v. 详细检查，细查：to examine or observe with great care; inspect critically\n【考】scrutinize；scrutinized"
+    },
+    "speculation": {
+        "value": "n. 推测；猜测；猜想：reasoning based on inconclusive evidence; conjecture or supposition"
+    },
+    "spurious": {
+        "value": "adj. 伪造的，假的：lacking authenticity or validity in essence or origin; not genuine; false\nadj.（论点、推理）不正确的，站不住脚的：a spurious argument or way of reasoning is incorrect, and so the conclusion is probably incorrect "
+    },
+    "supplant": {
+        "value": "v. 替代，取代：to usurp the place of, especially through intrigue or underhanded tactics\n【考】supplant；supplanted"
+    },
+    "supplement": {
+        "value": "v. 补充，增补：to add or serve as a supplement to\n【考】supplement；supplementary"
+    },
+    "surpass": {
+        "value": "v. 超过，胜过，优于：to become better, greater, or stronger than : exceed\nv. 超出（范围）：to be beyond the limit, powers, or capacity of; transcend\n【考】surpass；surpassed；unsurpassed"
+    },
+    "sycophantic": {
+        "value": "adj. 阿谀奉承的;谄媚的;拍马屁的：of, relating to, or characteristic of a sycophant : fawning, obsequious"
+    },
+    "synthesis": {
+        "value": "n. 综合，结合：the combining of separate elements or substances to form a coherent whole\nn.（通过化学或生物反应进行的）合成：the synthesis of a substance is the production of it by means of chemical or biological reactions"
+    },
+    "unreliable": {
+        "value": "adj. 不可靠的；不能信赖的：marked by or exhibiting a lack of reliability"
+    },
+    "accelerate": {
+        "value": "v. 使增速：to increase the speed of\nv. 促进；加快：to cause to develop or progress more quickly\n【考】accelerate；accelerated；accelerating"
+    },
+    "acute": {
+        "value": "adj. 急性的（发作快且持续时间短但发病过程剧烈的）： having a rapid onset and following a short but severe course\nadj. 敏锐的：keenly perceptive or discerning; penetrating\nadj. 紧急的：seriously demanding urgent attention"
+    },
+    "affable": {
+        "value": "adj. 和蔼可亲，易于与人交谈的：being friendly, amiable and at ease in talking to others "
+    },
+    "affirm": {
+        "value": " v. 断言；肯定，确认：to assert (as a judgment or decree) as valid or confirmed\n【考】affirms；affirmed；affirming"
+    },
+    "aggrandize": {
+        "value": "v. 增加：to make great or greater : increase, enlarge\n【考】aggrandize；aggrandized ；aggrandizing"
+    },
+    "allusive": {
+        "value": "adj. 暗指的，不直接的：an implied or indirect reference especially in literature also : the use of such references\n【派】allusion  n. 暗示；间接提到：the act of alluding; indirect reference\n【注】在GRE填空中，该词经常会和literal和figurative等词一起。literal表示的是直接的，没有比喻的（avoiding exaggeration, metaphor）,而allusive和figurative都是不直接的表达，具体请读者参考后面的literal和figurative。\n【考】allusive；allusion；allusions"
+    },
+    "alternative": {
+        "value": "n. 代替物，代替选择：if one thing is an alternative to another, the first can be found, used, or done instead of the second\nn. 另一选择（这些可能性中的一种）：either of these possibilities: choice\nadj. 非传统的，新颖的：different from the usual or conventional\nadj. 其他的：an alternative plan or offer is different from the one that you already have, and can be done or used instead\n【考】alternative；alternatives"
+    },
+    "authentic": {
+        "value": "adj. 非伪造的，真正的：having a claimed and verifiable origin or authorship; not counterfeit or copied\nadj. 可信的，真实的：worthy of acceptance or belief as conforming to or based on fact"
+    },
+    "autonomy": {
+        "value": "n.自治：the quality or state of being self-governing\nn. 自主决定权：the ability or opportunity to make your own decisions without being controlled by anyone else\n【考】autonomous"
+    },
+    "banal": {
+        "value": "adj. 平庸的，陈腐的；平淡无奇的：lacking originality, freshness, or novelty; drearily commonplace and often predictable; trite"
+    },
+    "bias": {
+        "value": "n. 偏见: an inclination of temperament or outlook especially : a personal and sometimes unreasoned judgment\nv. 使有偏见；使偏向: to influence in a particular, typically unfair direction; prejudice\n【注】例句1句中的construction意为：对一个措辞或陈述所做出的阐明或解释。具体参见construction一词。"
+    },
+    "compliment": {
+        "value": "n. 赞美；恭维(话)：an expression of praise, admiration, or congratulation\nv. 称赞；恭维：to say something nice to someone in order to praise them\n【考】complimented；complimentary"
+    },
+    "concrete": {
+        "value": "adj. 具体的，实在的： characterized by or belonging to immediate experience of actual things or events \nn. 混凝土： a hard strong building material"
+    },
+    "condescension": {
+        "value": "n. 傲慢；屈尊；俯就：patronizing attitude or behavior; voluntary descent from one's rank or dignity in relations with an inferior \n【派】condescending  adj. 盛气凌人的;居高临下的\n【注】该词在填空中出现的频率非常高。\n【考】condescension；condescending"
+    },
+    "condone": {
+        "value": "v. 宽恕；谅解；纵容：to overlook, forgive, or disregard (an offense) without protest or censure\n【考】condone；condones"
+    },
+    "consensus": {
+        "value": "n. 一致看法；共识：an opinion or position reached by a group as a whole"
+    },
+    "conservative": {
+        "value": "adj.保守的；反对变革的： favoring traditional views and values; tending to oppose change\nadj. 传统的，守旧的：traditional or restrained in style\nadj. （估计或猜猜）保守的，稳妥的，谨慎小心的：(having or showing a close attentiveness to avoid danger or trouble\n【派】conservation  n. 保护，节约\n【考】conservation；conservatism"
+    },
+    "copious": {
+        "value": "adj. 丰富的，供应充足的： yielding or containing plenty; affording ample supply\nadj. 大量的；充足的： large in quantity; abundant\nadj. 冗长的，啰嗦的： abounding in matter, thoughts, or words; wordy"
+    },
+    "culmination": {
+        "value": "n. 终点;高潮；顶点： something, especially something important, that is the culmination of an activity, process, or series of events happens at the end of it"
+    },
+    "cursory": {
+        "value": "adj. 仓促的；匆匆的；粗略的： performed with haste and scant attention to detail\n【例】I gave the letter a fairly cursory reading. 我大略地读了一下那封信。"
+    },
+    "decry": {
+        "value": "v. 公开谴责: to condemn openly\n【考】decry；decried"
+    },
+    "defend": {
+        "value": "v. 支持，捍卫: to maintain or support in the face of argument or hostile criticism\nv. 保护，保卫: to make or keep safe from danger, attack, or harm\nv. 保住，守住:to retain or seek to retain (as a title or position) against a challenge in a contest \n【考】defend；defended"
+    },
+    "defy": {
+        "value": "v. 反抗，违抗：to oppose or resist with boldness and assurance\nv. 不服从，不合作：to oppose or resist with boldness and assurance\n【考】defy；defied"
+    },
+    "delay": {
+        "value": "n. 耽搁, 迟滞：the condition of being delayed; detainment\nv. 使延误；使耽搁：to cause to be later or slower than expected or desired\nv. 延期；推迟：to postpone until a later time; defer"
+    },
+    "deny": {
+        "value": "v. 拒绝给予，剥夺：to refuse to grant or allow, refuse\nv. 否认，驳斥：to declare untrue; contradict\nv. 拒绝承认；否认：to refuse to admit or acknowledge : disavow\n【考】deny；denied ；denying"
+    },
+    "detail": {
+        "value": "v. 详述；详细列举（或说明）：to report or relate minutely or in particulars\n【考】details；detailed"
+    },
+    "devastate": {
+        "value": "v. 毁坏；破坏；摧毁：to lay waste; destroy\n【考】devastating"
+    },
+    "disclose": {
+        "value": "v. 揭露；泄露；使公开：to expose to view, as by removing a cover; uncover\n【考】disclose；discloses；undisclosed"
+    },
+    "discretion": {
+        "value": "n. 谨慎；慎重：the quality of being discreet; circumspection\nn. 自行决定的自由；酌情决定权：freedom to act or judge on one's own\n【派】discretionary  adj. 自由决定的，自由支配的\n【考】discretion；discretionary"
+    },
+    "disguise": {
+        "value": "v. 掩盖；掩饰：to conceal or obscure by dissemblance or false show; misrepresent\n【考】disguise；disguising"
+    },
+    "dispassionate": {
+        "value": "adj. 不动感情的；不带偏见的：devoid of or unaffected by passion, emotion, or bias\n【考】dispassionate；dispassionately"
+    },
+    "divert": {
+        "value": "v. 转移，分散（注意力）：to distract\n【考】diverts；diverted ；diverting"
+    },
+    "dogmatic": {
+        "value": "adj. 武断的；固执己见的：characterized by or given to the expression of opinions very strongly or positively as if they were facts\n【派】dogmatically  adv. 教条主义地；武断地\n【注】考生可以同时看看柯林斯的释义：if you say that someone is dogmatic, you are critical of them because they are convinced that they are right, and refuse to consider that other opinions might also be justified\n【考】dogmatic；undogmatic"
+    },
+    "dominate": {
+        "value": "v. 控制，统治：to control, govern, or rule by superior authority or power\nv. 在…中占首要地位，在…中最具影响力：to enjoy a commanding, controlling position in\n【考】dominate；dominated"
+    },
+    "drollness": {
+        "value": "n. 滑稽古怪;离奇可笑：the quality of being humorous, whimsical, or odd  "
+    },
+    "eccentric": {
+        "value": "adj. 不循规蹈矩的，异常的: departing from a recognized, conventional, or established norm or pattern\n【派】eccentricity  n. 古怪，不循规蹈矩\n【考】eccentric；eccentricity"
+    },
+    "eclipse": {
+        "value": "n. 下降，衰退：a fall into obscurity or disuse; a decline\nv. 使黯然失色；使相形见绌：to obscure or diminish in importance , fame or reputation\nv. 超越，光芒盖过：to surpass; outshine"
+    },
+    "elicit": {
+        "value": "v. 引起；引出：to call forth or draw out (as information or a response)\nv. 诱出，引出：to bring or draw out (something latent); educe\n【考】elicits; elicited"
+    },
+    "eliminate": {
+        "value": "v. 消灭，根除：to put an end to or get rid of : remove, eradicate\nv. 排除：to leave out or omit from consideration; reject\n【派】elimination  n. 消除；除去\n【考】eliminate；eliminated"
+    },
+    "encumber": {
+        "value": "v. 阻碍或妨碍…的行动或执行：to hinder or impede the action or performance of\nv. 使负担法律义务或债务：to burden with legal or financial obligations\n【注】unencumbered  adj. 没有阻碍的；\n      succumb  v. 屈从于，屈服于；死亡\n【考】encumbered；unencumbered"
+    },
+    "enduring": {
+        "value": "adj. 持久的；不朽的：lasting; continuing; durable"
+    },
+    "entertain": {
+        "value": "v. 使有兴趣：to hold the attention of with something amusing or diverting\nv. 考虑，深入思考：to consider; contemplate\nv. 抱着，怀有：to hold in mind; harbor\n【派】entertaining  adj. 使人愉快的；娱乐的\n【考】entertain；entertains ；entertaining；entertainment"
+    },
+    "erroneous": {
+        "value": "adj. 错误的；不正确的：containing or derived from error; mistaken\n【考】erroneous；erroneousness"
+    },
+    "estrange": {
+        "value": "v. 使疏远，使不和：to make hostile, unsympathetic, or indifferent; alienate\n【派】estranged  adj. 疏远的，不和的，不来往的\n【考】estrangement，estranged"
+    },
+    "exasperate": {
+        "value": "v. 激怒：to make very angry or impatient; annoy greatly\n【注】exacerbate  v. 使恶化；使加剧；\n      deteriorate  v. 恶化；变坏；衰退\n【考】exasperate；exasperates；exasperation"
+    },
+    "expense": {
+        "value": "n. 费用：something spent to attain a goal or accomplish a purpose\n【近】cost, disbursement, expenditure, outlay\n【例】He spared no expense to make the party a success. 为使宴会成功他不惜费用。"
+    },
+    "fallacious": {
+        "value": "adj. 错误的，谬误的：wrong, containing or based on false ideas\nadj. 误导的；欺骗性的：tending to mislead; deceptive"
+    },
+    "fashion": {
+        "value": "n. 时装, 时尚：the prevailing style or custom, as in dress or behavior\nn. 方式；方法：manner or mode; way\nn. 种类；类别： kind or variety; sort\nv. 形成；制造： to give shape or form to; make\n【考】fashion；fashioned；unfashionable"
+    },
+    "feckless": {
+        "value": "adj. 粗心的，不负责任的；虚弱的：careless and irresponsible；weak, ineffective "
+    },
+    "flamboyant": {
+        "value": "adj. 浮夸的；炫耀的：given to ostentatious display; showy\nadj. 华丽的；色彩艳丽的：highly elaborate; ornate\n【考】flamboyant；flamboyance"
+    },
+    "fleeting": {
+        "value": "adj. 转瞬间的; 短暂的：passing quickly; ephemeral"
+    },
+    "function": {
+        "value": "n. 目的，功能；作用：the action for which a person or thing is specially fitted or used or for which a thing exists : purpose \nv. 发挥功能，起作用，行使职责： to have or perform a function; serve\n【考】functions; functional; functionally"
+    },
+    "galvanize": {
+        "value": "v. 唤醒，刺激：to arouse to awareness or action; spur\n【考】galvanize ；galvanizes"
+    },
+    "garrulous": {
+        "value": "adj. 喋喋不休的，絮絮叨叨的：given to excessive and often trivial or rambling talk; tiresomely talkative\nadj. 冗长的，话多的：wordy and rambling\n【考】garrulous；garrulousness"
+    },
+    "genuine": {
+        "value": "adj. 真的：actually possessing the alleged or apparent attribute or character\nadj. 真正的；非伪造的；名副其实的：not spurious or counterfeit; authentic\nadj. 真诚的；诚实可靠的；诚恳的：free from hypocrisy or dishonesty; sincere"
+    },
+    "haphazard": {
+        "value": "adj. 偶然的，无计划的，任意的： dependent upon or characterized by mere chance; marked by lack of plan, order, or direction\n【考】haphazard；haphazardly"
+    },
+    "highlight": {
+        "value": "n. 最有趣（或最精彩、最重要）的部分： the highlights of an event, activity, or period of time are the most interesting or exciting parts of it\nv. 使突出；强调；使注意：to make prominent; emphasize\n【考】highlights；highlighted"
+    },
+    "impair": {
+        "value": "v. 损害；妨碍；削弱：to cause to diminish, as in strength, value, or quality\n【考】impair；impaired"
+    },
+    "impartiality": {
+        "value": "n.  不偏不倚；公平；公正：the quality or state of being just and unbiased"
+    },
+    "impede": {
+        "value": "v. 妨碍, 阻止：to retard or obstruct the progress of\n【考】impede；impeding；unimpeded"
+    },
+    "impediment": {
+        "value": "n. 妨碍；阻碍：something that impedes; a hindrance or an obstruction\n【考】impediment；impediments"
+    },
+    "improbable": {
+        "value": "adj. 不大可能的；未必会(发生)的：unlikely to take place or be true"
+    },
+    "ingenious": {
+        "value": "adj. 巧妙的；制作精巧的；新颖独特的：having or arising from an inventive or cunning mind; clever\n【考】ingenious；ingeniousness"
+    },
+    "ingenuous": {
+        "value": "adj. 坦率的；真诚的；单纯的：openly straightforward or frank; candid\n【考】ingenuousness"
+    },
+    "insouciant": {
+        "value": "adj. 漠不关心的；漫不经心的：marked by blithe unconcern; nonchalant\n【派】insouciance  n. 漫不经心\n【考】insouciance"
+    },
+    "insular": {
+        "value": "adj. 与世隔绝的：suggestive of the isolated life of an island\nadj. 孤立的；保守的；思想狭隘的：circumscribed and detached in outlook and experience; narrow or provincial"
+    },
+    "intent": {
+        "value": "n. 意图；目标：something that is intended; an aim or a purpose\nadj. 专心的；专注的：having the attention applied; engrossed\nadj. 急切的，渴望的：having the mind and will focused on a specific purpose\n【考】intentioned、intentionally、intentional"
+    },
+    "interpretation": {
+        "value": "n. 解释；说明；阐明：the act or the result of interpreting : explanation\nn. 表演；演绎；演奏：a performer's distinctive personal version of a song, dance, piece of music, or role; a rendering\n【考】interpretation；interpretations；misinterpretation"
+    }
+}
