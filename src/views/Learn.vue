@@ -2,7 +2,7 @@
     <div class="learn">
         <div class="main">
             <div class="main-left">
-                <div class="left-back">
+                <div class="left-back" @click="goBack">
                     <img src="../assets/back.png" />
                     后退
                 </div>
@@ -71,6 +71,11 @@ export default {
     },
     unitProgress () {
       return 35.7
+    }
+  },
+  methods: {
+    goBack () {
+      this.$router.go(-1)
     }
   }
 }

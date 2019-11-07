@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <div class="main">
-            <div class="title">GRE 2 Weeks</div>
+            <div class="title" @click="goHome">GRE 2 Weeks</div>
             <div class="user">
                 <div>头像</div>
                 <span>稍后开放</span>
@@ -13,7 +13,13 @@
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  methods: {
+    goHome () {
+      // if not home page then go home
+      return this.$route.path === '/' || this.$router.replace('/')
+    }
+  }
 }
 </script>
 
@@ -24,6 +30,7 @@ export default {
   width: 100%;
   background: #40BC96;
   height: 80px;
+  z-index: 1;
 }
 
 .main {
@@ -43,6 +50,7 @@ export default {
   padding: 0 10px;
   box-sizing: border-box;
   font-family: Calibri, sans-serif;
+  z-index: 10;
 }
 
 .user {
@@ -50,6 +58,7 @@ export default {
   display: flex;
   align-items: center;
   padding-right: 10px;
+  cursor: pointer;
 }
 
 .user div {
