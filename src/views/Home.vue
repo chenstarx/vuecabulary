@@ -4,7 +4,7 @@
         <div class="header">两周搞定GRE单词</div>
         <img src="../assets/logo.svg" />
         <div class="start" @click="showLogin=true">开始学习</div>
-        <div class="info">Powered by Vue.js<span>苏ICP备17067234号-3</span></div>
+        <div class="info" @click="goGit">© 2019-2020 chenstarx@GitHub<span>苏ICP备17067234号-3</span></div>
     </div>
 </template>
 
@@ -16,9 +16,17 @@ export default {
   components: {
     Login
   },
+  mounted () {
+    this.$event.on('login', this, () => { this.showLogin = true })
+  },
   data () {
     return {
       showLogin: false
+    }
+  },
+  methods: {
+    goGit () {
+      window.location.href = 'https://github.com/chenstarx/vue-vocabulary'
     }
   }
 }
@@ -77,9 +85,10 @@ export default {
   font-weight: 500;
   color: #999999;
   line-height: 30px;
+  cursor: pointer;
 }
 
 .info span {
-  font-size: 13px;
+  font-size: 14px;
 }
 </style>

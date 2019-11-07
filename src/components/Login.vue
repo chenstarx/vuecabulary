@@ -39,12 +39,24 @@ export default {
       if (!password) return alert('请填写密码')
       if (username.length < 4) return alert('用户名至少需要4位')
       if (password.length < 5) return alert('密码至少需要5位')
-      const user = {
-        username,
-        password,
-        createdAt: Date.now()
+      // if user exist
+      const userData = localStorage.getItem(username)
+      if (userData) {
+        // existing user
+        const user = JSON.parse(userData)
+        if (password === user.password) this.$store.commit('setUser', user)
+        else return alert('密码错误，请重试')
+      } else {
+        // new user
+        const user = {
+          _id: '1',
+          username,
+          password,
+          createdAt: Date.now()
+        }
+        this.$store.commit('setUser', user)
       }
-      console.log(user)
+      this.close()
     }
   }
 }
