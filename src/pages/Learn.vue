@@ -3,21 +3,21 @@
         <div class="main">
             <div class="main-left">
                 <div class="left-back" @click="goBack">
-                    <img src="../assets/back.png" />
+                    <img src="../static/icons/back.png" />
                     后退
                 </div>
                 <div class="left-main">
                     <div class="left-title">
-                        <img src="../assets/memory.png" />
+                        <img src="../static/icons/memory.png" />
                         学习模式
                     </div>
                     <div class="left-counter">
                         <div class="left-number" style="color:#AAAAAA">{{wordLeft}}</div>
                         <span>剩余</span>
-                        <img src="../assets/next.png" />
+                        <img src="../static/icons/next.png" />
                         <div class="left-number" style="color:#EACD76">{{wordReview}}</div>
                         <span>需巩固</span>
-                        <img src="../assets/next.png" />
+                        <img src="../static/icons/next.png" />
                         <div class="left-number" style="color:#23B26D">{{wordFinished}}</div>
                         <span>已完成</span>
                     </div>

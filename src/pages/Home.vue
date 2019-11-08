@@ -1,9 +1,21 @@
 <template>
     <div class="home">
         <Login v-if="showLogin" @close="showLogin=false" />
-        <div class="header">两周搞定GRE单词</div>
-        <img src="../assets/logo.svg" />
-        <div class="start" @click="showLogin=true">开始学习</div>
+        <template v-if="user._id">
+            <div class="main">
+                <div class="revise">
+
+                </div>
+                <div class="learn">
+
+                </div>
+            </div>
+        </template>
+        <template v-else>
+            <div class="header">两周搞定GRE单词</div>
+            <img src="../static/icons/logo.svg" />
+            <div class="start" @click="showLogin=true">现在开始</div>
+        </template>
         <div class="info" @click="goGit">© 2019-2020 chenstarx@GitHub<span>苏ICP备17067234号-3</span></div>
     </div>
 </template>
@@ -24,6 +36,11 @@ export default {
       showLogin: false
     }
   },
+  computed: {
+    user () {
+      return this.$store.state.user
+    }
+  },
   methods: {
     goGit () {
       window.location.href = 'https://github.com/chenstarx/vue-vocabulary'
@@ -37,6 +54,27 @@ export default {
   width: 100vw;
   height: 100vh;
   background: #F0F0F0;
+  overflow: hidden;
+}
+
+.main {
+  height: 100%;
+  padding: 110px 30px 0 30px;
+  box-sizing: border-box;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.revise {
+  width: 100%;
+  height: 35%;
+  background: #FFFFFF;
+  box-shadow: 0 2px 7px 0 rgba(0, 0, 0, .24);
+  border-radius: 4px;
+}
+
+.learn {
+
 }
 
 .header {

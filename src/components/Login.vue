@@ -3,7 +3,7 @@
         <div class="login">
             <div class="login-title">
                 <span>登录/注册</span>
-                <img @click="close" src="../assets/close.png" />
+                <img @click="close" src="../static/icons/close.png" />
             </div>
             <div class="login-main">
                 <input v-model="username" placeholder="请输入用户名" spellcheck="false" type="text" />

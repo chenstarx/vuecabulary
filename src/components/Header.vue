@@ -11,7 +11,7 @@
                     <div></div>
                     <span>未登录</span>
                 </template>
-                <img src="../assets/down.png" />
+                <img src="../static/icons/down.png" />
             </div>
             <div class="menu" v-if="showMenu">
                 <div class="menu-item" @click="userAction">{{user._id?'退出登录':'登录'}}</div>
