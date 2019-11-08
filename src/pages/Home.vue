@@ -12,43 +12,43 @@
                     </div>
                     <div class="revise-right">
                         <div class="revise-title">GRE高频325分机经词</div>
-                        <div class="revise-hint">早晚各复习一次，短时间就可以背下来！</div>
-                        <div class="revise-button">开始复习</div>
+                        <div class="revise-hint">早晚各复习一次，两周完全掌握！</div>
+                        <div class="revise-button" @click="goLearn">开始复习</div>
                     </div>
                 </div>
                 <div class="hint">新学单词：</div>
                 <div class="learn">
-                    <div class="learn-list">
+                    <div class="learn-list" @click="goRevise(1)">
                         <div class="list-title">Day 1：新学List1~3</div>
                         <div class="list-hint">300个单词</div>
                         <div class="list-more">尚未开始，花费约3小时</div>
                         <div class="list-hover"></div>
                     </div>
-                    <div class="learn-list">
+                    <div class="learn-list" @click="goRevise(2)">
                         <div class="list-title">Day 2：新学List4~6</div>
                         <div class="list-hint">300个单词</div>
                         <div class="list-more">尚未开始，花费约3小时</div>
                         <div class="list-hover"></div>
                     </div>
-                    <div class="learn-list">
+                    <div class="learn-list" @click="goRevise(3)">
                         <div class="list-title">Day 3：新学List7~9</div>
                         <div class="list-hint">300个单词</div>
                         <div class="list-more">尚未开始，花费约3小时</div>
                         <div class="list-hover"></div>
                     </div>
-                    <div class="learn-list">
+                    <div class="learn-list" @click="goRevise(4)">
                         <div class="list-title">Day 4：新学List10~12</div>
                         <div class="list-hint">300个单词</div>
                         <div class="list-more">尚未开始，花费约3小时</div>
                         <div class="list-hover"></div>
                     </div>
-                    <div class="learn-list">
+                    <div class="learn-list" @click="goRevise(5)">
                         <div class="list-title">Day 5：新学List13~15</div>
                         <div class="list-hint">300个单词</div>
                         <div class="list-more">尚未开始，花费约3小时</div>
                         <div class="list-hover"></div>
                     </div>
-                    <div class="learn-list">
+                    <div class="learn-list" @click="goRevise(6)">
                         <div class="list-title">Day 6：新学List16~18</div>
                         <div class="list-hint">220个单词</div>
                         <div class="list-more">尚未开始，花费约2小时</div>
@@ -89,6 +89,12 @@ export default {
     }
   },
   methods: {
+    goLearn () {
+      this.$router.push('/learn')
+    },
+    goRevise (day) {
+      this.$router.push(`/revise?list=${day}`)
+    },
     goGit () {
       window.location.href = 'https://github.com/chenstarx/vue-vocabulary'
     }

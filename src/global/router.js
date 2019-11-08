@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/pages/Home.vue'
 import Learn from '@/pages/Learn.vue'
+import Revise from '@/pages/Revise.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/learn',
     name: 'learn',
     component: Learn
+  },
+  {
+    path: '/revise',
+    name: 'revise',
+    component: Revise
   }
   // {
   //   path: '/about',
