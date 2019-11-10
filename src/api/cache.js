@@ -107,7 +107,7 @@ const connect = () => {
 // 未用到
 const newUser = (user) => {
   return new Promise((resolve, reject) => {
-    if (!db) reject(new Error('db not connected'))
+    if (!db) return reject(new Error('db not connected'))
 
     let transaction = db.transaction('user', 'readwrite')
 
@@ -127,7 +127,7 @@ const newUser = (user) => {
 // 未用到
 const getUserById = (userId) => {
   return new Promise((resolve, reject) => {
-    if (!db) reject(new Error('db not connected'))
+    if (!db) return reject(new Error('db not connected'))
 
     let transaction = db.transaction('user', 'readwrite')
 
@@ -144,7 +144,7 @@ const getUserById = (userId) => {
 // 未用到
 const getUserByName = (username) => {
   return new Promise((resolve, reject) => {
-    if (!db) reject(new Error('db not connected'))
+    if (!db) return reject(new Error('db not connected'))
 
     let transaction = db.transaction('user', 'readwrite')
 
@@ -161,7 +161,7 @@ const getUserByName = (username) => {
 // 用户登录，如果username未被注册则注册新用户
 const userLogin = (username, password) => {
   return new Promise((resolve, reject) => {
-    if (!db) reject(new Error('db not connected'))
+    if (!db) return reject(new Error('db not connected'))
 
     let transaction = db.transaction('user', 'readwrite')
 
@@ -174,7 +174,7 @@ const userLogin = (username, password) => {
       if (user) {
         // username registered
         if (password === user.password) resolve(e.target.result)
-        else reject(new Error('password'))
+        else return reject(new Error('password'))
       } else {
         // username not exist, create new user
         user = {
@@ -211,7 +211,7 @@ const userLogin = (username, password) => {
 // }
 const getLearnedByUserId = (userId) => {
   return new Promise((resolve, reject) => {
-    if (!db) reject(new Error('db not connected'))
+    if (!db) return reject(new Error('db not connected'))
 
     let transaction = db.transaction('learned', 'readwrite')
 
@@ -241,7 +241,7 @@ const getLearnedByUserId = (userId) => {
 // }
 const getProgressByUserId = (userId) => {
   return new Promise((resolve, reject) => {
-    if (!db) reject(new Error('db not connected'))
+    if (!db) return reject(new Error('db not connected'))
 
     let transaction = db.transaction('progress', 'readwrite')
 
@@ -268,7 +268,7 @@ const getProgressByUserId = (userId) => {
 // }
 const getUserListProgress = (userId, listName) => {
   return new Promise((resolve, reject) => {
-    if (!db) reject(new Error('db not connected'))
+    if (!db) return reject(new Error('db not connected'))
 
     let transaction = db.transaction('progress', 'readwrite')
 
@@ -289,7 +289,7 @@ const getUserListProgress = (userId, listName) => {
 // 判断用户是否学习过某个单词
 const isUserLearnedWord = (userId, wordEn) => {
   return new Promise((resolve, reject) => {
-    if (!db) reject(new Error('db not connected'))
+    if (!db) return reject(new Error('db not connected'))
 
     let transaction = db.transaction('learned', 'readwrite')
 
@@ -313,10 +313,10 @@ const isUserLearnedWord = (userId, wordEn) => {
 // (用户id，单词对象，{记忆周期变化，熟悉度变化})
 const editUserLearned = (userId, wordObj, { period = 1, stage = 7, periodChange = 0, stageChange = 0 }) => {
   return new Promise((resolve, reject) => {
-    if (!db) reject(new Error('db not connected'))
+    if (!db) return reject(new Error('db not connected'))
 
     const { wordEn, wordZh } = wordObj || {}
-    if (!wordEn || !wordZh) reject(new Error('word object incorrect'))
+    if (!wordEn || !wordZh) return reject(new Error('word object incorrect'))
 
     let transaction = db.transaction('learned', 'readwrite')
 
@@ -402,7 +402,7 @@ const editUserLearned = (userId, wordObj, { period = 1, stage = 7, periodChange 
 // change一般情况下表示该list新学单词数量，即location增量
 const editUserProgress = (userId, listName, { location = 0, change = 0 }) => {
   return new Promise((resolve, reject) => {
-    if (!db) reject(new Error('db not connected'))
+    if (!db) return reject(new Error('db not connected'))
 
     let transaction = db.transaction('progress', 'readwrite')
 
