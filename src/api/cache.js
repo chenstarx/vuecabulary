@@ -57,7 +57,7 @@ const connect = () => {
     //   user: 10000,  // user._id，索引到user表
     //   words: {
     //     word1: {  // 单词本身就是字段名
-    //       zh: "translation",  // 单词的中文翻译
+    //       value: "translation",  // 单词的中文翻译
     //       period: 1,  // 艾宾斯浩复习周期，1代表5分钟周期，2代表30分钟周期，以此类推
     //       stage: 7,  // 不熟练度，数字越大表示越不熟练，为0时表示完全掌握，新背单词默认为7
     //       updatedAt: Date.now()   // 上次复习时间，配合period, stage即可算出该单词复习权重
@@ -106,13 +106,13 @@ const connect = () => {
 
 // 未用到
 const newUser = (user) => {
-  if (!db) return console.log('db not connected')
-
-  let transaction = db.transaction('user', 'readwrite')
-
-  let store = transaction.objectStore('user')
-
   return new Promise((resolve, reject) => {
+    if (!db) reject(new Error('db not connected'))
+
+    let transaction = db.transaction('user', 'readwrite')
+
+    let store = transaction.objectStore('user')
+
     let request = store.add(user)
 
     request.onsuccess = (e) => {
@@ -126,13 +126,13 @@ const newUser = (user) => {
 
 // 未用到
 const getUserById = (userId) => {
-  if (!db) return console.log('db not connected')
-
-  let transaction = db.transaction('user', 'readwrite')
-
-  let store = transaction.objectStore('user')
-
   return new Promise((resolve, reject) => {
+    if (!db) reject(new Error('db not connected'))
+
+    let transaction = db.transaction('user', 'readwrite')
+
+    let store = transaction.objectStore('user')
+
     let request = store.get(userId)
 
     request.onsuccess = (e) => { resolve(e.target.result) }
@@ -143,13 +143,13 @@ const getUserById = (userId) => {
 
 // 未用到
 const getUserByName = (username) => {
-  if (!db) return console.log('db not connected')
-
-  let transaction = db.transaction('user', 'readwrite')
-
-  let store = transaction.objectStore('user')
-
   return new Promise((resolve, reject) => {
+    if (!db) reject(new Error('db not connected'))
+
+    let transaction = db.transaction('user', 'readwrite')
+
+    let store = transaction.objectStore('user')
+
     let request = store.index('username').get(username.toLowerCase())
 
     request.onsuccess = (e) => { resolve(e.target.result) }
@@ -160,13 +160,13 @@ const getUserByName = (username) => {
 
 // 用户登录，如果username未被注册则注册新用户
 const userLogin = (username, password) => {
-  if (!db) return console.log('db not connected')
-
-  let transaction = db.transaction('user', 'readwrite')
-
-  let store = transaction.objectStore('user')
-
   return new Promise((resolve, reject) => {
+    if (!db) reject(new Error('db not connected'))
+
+    let transaction = db.transaction('user', 'readwrite')
+
+    let store = transaction.objectStore('user')
+
     let request = store.index('username').get(username.toLowerCase())
 
     request.onsuccess = (e) => {
@@ -202,7 +202,7 @@ const userLogin = (username, password) => {
 // 返回值范例
 // {
 //   word1: {
-//     zh: "translation",
+//     value: "translation",
 //     period: 1,
 //     stage: 7,
 //     updatedAt: Date.now()
@@ -210,18 +210,18 @@ const userLogin = (username, password) => {
 //   word2: { ... }
 // }
 const getLearnedByUserId = (userId) => {
-  if (!db) return console.log('db not connected')
-
-  let transaction = db.transaction('learned', 'readwrite')
-
-  let store = transaction.objectStore('learned')
-
   return new Promise((resolve, reject) => {
+    if (!db) reject(new Error('db not connected'))
+
+    let transaction = db.transaction('learned', 'readwrite')
+
+    let store = transaction.objectStore('learned')
+
     let request = store.index('user').get(userId)
 
     request.onsuccess = (e) => {
       // 注意这里返回的是learned表里的words字段，方便应用
-      const { words } = e.target.result
+      const { words } = e.target.result || {}
       if (words) resolve(words)
       else resolve({})
     }
@@ -240,18 +240,18 @@ const getLearnedByUserId = (userId) => {
 //   list2: { ... }
 // }
 const getProgressByUserId = (userId) => {
-  if (!db) return console.log('db not connected')
-
-  let transaction = db.transaction('progress', 'readwrite')
-
-  let store = transaction.objectStore('progress')
-
   return new Promise((resolve, reject) => {
+    if (!db) reject(new Error('db not connected'))
+
+    let transaction = db.transaction('progress', 'readwrite')
+
+    let store = transaction.objectStore('progress')
+
     let request = store.index('user').get(userId)
 
     request.onsuccess = (e) => {
       // 注意这里返回的是progress表里的lists字段，方便应用
-      const { lists } = e.target.result
+      const { lists } = e.target.result || {}
       if (lists) resolve(lists)
       else resolve({})
     }
@@ -267,17 +267,17 @@ const getProgressByUserId = (userId) => {
 //   startedAt: Date.now()
 // }
 const getUserListProgress = (userId, listName) => {
-  if (!db) return console.log('db not connected')
-
-  let transaction = db.transaction('progress', 'readwrite')
-
-  let store = transaction.objectStore('progress')
-
   return new Promise((resolve, reject) => {
+    if (!db) reject(new Error('db not connected'))
+
+    let transaction = db.transaction('progress', 'readwrite')
+
+    let store = transaction.objectStore('progress')
+
     let request = store.index('user').get(userId)
 
     request.onsuccess = (e) => {
-      const { lists } = e.target.result
+      const { lists } = e.target.result || {}
       if (lists && lists[listName]) resolve(lists[listName])
       else resolve({})
     }
@@ -288,17 +288,17 @@ const getUserListProgress = (userId, listName) => {
 
 // 判断用户是否学习过某个单词
 const isUserLearnedWord = (userId, wordEn) => {
-  if (!db) return console.log('db not connected')
-
-  let transaction = db.transaction('learned', 'readwrite')
-
-  let store = transaction.objectStore('learned')
-
   return new Promise((resolve, reject) => {
+    if (!db) reject(new Error('db not connected'))
+
+    let transaction = db.transaction('learned', 'readwrite')
+
+    let store = transaction.objectStore('learned')
+
     let request = store.index('user').get(userId)
 
     request.onsuccess = (e) => {
-      let { words } = e.target.result
+      let { words } = e.target.result || {}
       if (words && words[wordEn]) resolve(true)
       else resolve(false)
     }
@@ -311,28 +311,31 @@ const isUserLearnedWord = (userId, wordEn) => {
 // 如果单词未学过就将单词添加进列表
 // 如果单词已在列表里面就更新period和stage
 // (用户id，单词对象，{记忆周期变化，熟悉度变化})
-const editUserLearned = (userId, wordObj, { periodChange = 0, stageChange = 0 }) => {
-  if (!db) return console.log('db not connected')
-
-  const { wordEn, wordZh } = wordObj
-
-  let transaction = db.transaction('learned', 'readwrite')
-
-  let store = transaction.objectStore('learned')
-
+const editUserLearned = (userId, wordObj, { period = 1, stage = 7, periodChange = 0, stageChange = 0 }) => {
   return new Promise((resolve, reject) => {
+    if (!db) reject(new Error('db not connected'))
+
+    const { wordEn, wordZh } = wordObj || {}
+    if (!wordEn || !wordZh) reject(new Error('word object incorrect'))
+
+    let transaction = db.transaction('learned', 'readwrite')
+
+    let store = transaction.objectStore('learned')
+
     let request = store.index('user').get(userId)
 
     request.onsuccess = (e) => {
       let learned = e.target.result
+      let findFlag = false
       if (learned) { // 用户有学习记录
         if (learned.words && learned.words[wordEn]) {
+          findFlag = true
           learned = {
             ...learned,
             words: {
               ...learned.words,
               [wordEn]: {
-                zh: wordZh,
+                value: wordZh,
                 period: learned.words[wordEn].period + periodChange,
                 stage: learned.words[wordEn].stage + stageChange, // stageChange = -1 or 0 or 1，对应认识，模糊，不认识
                 updatedAt: Date.now()
@@ -345,9 +348,9 @@ const editUserLearned = (userId, wordObj, { periodChange = 0, stageChange = 0 })
             words: {
               ...(learned.words || {}),
               [wordEn]: {
-                zh: wordZh,
-                period: 1,
-                stage: 7,
+                value: wordZh,
+                period,
+                stage,
                 updatedAt: Date.now()
               }
             }
@@ -356,8 +359,13 @@ const editUserLearned = (userId, wordObj, { periodChange = 0, stageChange = 0 })
         let putRequest = store.put(learned)
 
         putRequest.onsuccess = (e) => {
-          console.log('new word added to learned')
-          resolve(e.target.result)
+          if (findFlag) {
+            console.log('word status updated')
+            resolve('update')
+          } else {
+            console.log('new word added to learned')
+            resolve('add')
+          }
         }
 
         putRequest.onerror = (e) => { reject(e.target.error) }
@@ -366,9 +374,9 @@ const editUserLearned = (userId, wordObj, { periodChange = 0, stageChange = 0 })
           user: userId,
           words: {
             [wordEn]: {
-              zh: wordZh,
-              period: 1,
-              stage: 7,
+              value: wordZh,
+              period,
+              stage,
               updatedAt: Date.now()
             }
           }
@@ -377,7 +385,7 @@ const editUserLearned = (userId, wordObj, { periodChange = 0, stageChange = 0 })
 
         addRequest.onsuccess = (e) => {
           console.log('new learned record created')
-          resolve(e.target.result)
+          resolve('new')
         }
 
         addRequest.onerror = (e) => { reject(e.target.error) }
@@ -392,21 +400,24 @@ const editUserLearned = (userId, wordObj, { periodChange = 0, stageChange = 0 })
 // 如果list未学过就将list添加进列表
 // 如果list已在列表里面就更新list当前的学习情况
 // change一般情况下表示该list新学单词数量，即location增量
-const editUserProgress = (userId, listName, { change = 0 }) => {
-  if (!db) return console.log('db not connected')
-
-  let transaction = db.transaction('progress', 'readwrite')
-
-  let store = transaction.objectStore('progress')
-
+const editUserProgress = (userId, listName, { location = 0, change = 0 }) => {
   return new Promise((resolve, reject) => {
+    if (!db) reject(new Error('db not connected'))
+
+    let transaction = db.transaction('progress', 'readwrite')
+
+    let store = transaction.objectStore('progress')
+
     let request = store.index('user').get(userId)
 
     request.onsuccess = (e) => {
       // 注意这里返回的是progress表里的lists字段，方便应用
       let progress = e.target.result
+      let findFlag = false
       if (progress) {
         if (progress.lists && progress.lists[listName]) {
+          // 找到了该list
+          findFlag = true
           progress = {
             ...progress,
             lists: {
@@ -417,12 +428,14 @@ const editUserProgress = (userId, listName, { change = 0 }) => {
             }
           }
         } else {
+          // 未找到该list
           progress = {
             ...progress,
             lists: {
               ...(progress.lists || {}),
               [listName]: {
-                location: change >= 0 ? change : 0
+                location: location + change,
+                startedAt: Date.now()
               }
             }
           }
@@ -430,17 +443,23 @@ const editUserProgress = (userId, listName, { change = 0 }) => {
         let putRequest = store.put(progress)
 
         putRequest.onsuccess = (e) => {
-          console.log('progress edited')
-          resolve(e.target.result)
+          if (findFlag) {
+            console.log('list progress edited')
+            resolve('update')
+          } else {
+            console.log('new list added to progress')
+            resolve('add')
+          }
         }
 
         putRequest.onerror = (e) => { reject(e.target.error) }
       } else {
+        // 该用户的progress暂未建立记录
         progress = {
           user: userId,
           lists: {
             [listName]: {
-              location: change >= 0 ? change : 0,
+              location: location + change,
               startedAt: Date.now()
             }
           }
@@ -449,7 +468,7 @@ const editUserProgress = (userId, listName, { change = 0 }) => {
 
         addRequest.onsuccess = (e) => {
           console.log('new progress record created')
-          resolve(e.target.result)
+          resolve('new')
         }
 
         addRequest.onerror = (e) => { reject(e.target.error) }

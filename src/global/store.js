@@ -11,8 +11,6 @@ export default new Vuex.Store({
     setUser: (state, user) => {
       state.user = user
       localStorage.setItem('user', JSON.stringify(user))
-      // below is a local database 'insert' operation
-      localStorage.setItem(user.username, JSON.stringify(user))
     },
     logout: (state) => {
       state.user = {}
@@ -28,5 +26,8 @@ export default new Vuex.Store({
     }
   },
   modules: {
+  },
+  getters: {
+    user: state => state.user
   }
 })
