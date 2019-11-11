@@ -311,7 +311,7 @@ const isUserLearnedWord = (userId, wordEn) => {
 // 如果单词未学过就将单词添加进列表
 // 如果单词已在列表里面就更新period和stage
 // (用户id，单词对象，{记忆周期变化，熟悉度变化})
-const editUserLearned = (userId, wordObj, { period = 1, stage = 7, periodChange = 0, stageChange = 0 }) => {
+const editUserLearned = (userId, wordObj, { period = 0, stage = 0, periodChange = 0, stageChange = 0 }) => {
   return new Promise((resolve, reject) => {
     if (!db) return reject(new Error('db not connected'))
 
@@ -336,8 +336,8 @@ const editUserLearned = (userId, wordObj, { period = 1, stage = 7, periodChange 
               ...learned.words,
               [wordEn]: {
                 value: wordZh,
-                period: learned.words[wordEn].period + periodChange,
-                stage: learned.words[wordEn].stage + stageChange, // stageChange = -1 or 0 or 1，对应认识，模糊，不认识
+                period: period || learned.words[wordEn].period + periodChange,
+                stage: stage || learned.words[wordEn].stage + stageChange, // stageChange = -1 or 0 or 1，对应认识，模糊，不认识
                 updatedAt: Date.now()
               }
             }
@@ -349,8 +349,8 @@ const editUserLearned = (userId, wordObj, { period = 1, stage = 7, periodChange 
               ...(learned.words || {}),
               [wordEn]: {
                 value: wordZh,
-                period,
-                stage,
+                period: period || 1,
+                stage: stage || 7,
                 updatedAt: Date.now()
               }
             }
@@ -375,8 +375,8 @@ const editUserLearned = (userId, wordObj, { period = 1, stage = 7, periodChange 
           words: {
             [wordEn]: {
               value: wordZh,
-              period,
-              stage,
+              period: period || 1,
+              stage: stage || 7,
               updatedAt: Date.now()
             }
           }
@@ -423,7 +423,7 @@ const editUserProgress = (userId, listName, { location = 0, change = 0 }) => {
             lists: {
               ...progress.lists,
               [listName]: {
-                location: progress.lists[listName].location + change
+                location: location || progress.lists[listName].location + change
               }
             }
           }
