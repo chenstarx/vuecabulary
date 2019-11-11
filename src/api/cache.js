@@ -85,6 +85,7 @@ const connect = () => {
     //     list1: {  // list的名字本身就是字段名
     //       location: 255,  // 表示该list用户已经学过的单词数量（只要看一次就算学过，单词会被加到user.learned里）
     //       startedAt: Date.now()  // 开始学习的时间
+    //       updatedAt: Date.now()  // 上次学习的时间
     //     },
     //     list2: { ... }
     //   }
@@ -235,7 +236,8 @@ const getLearnedByUserId = (userId) => {
 // {
 //   list1: {
 //     location: 255,
-//     startedAt: Date.now()
+//     startedAt: Date.now(),
+//     updatedAt: Date.now()
 //   },
 //   list2: { ... }
 // }
@@ -423,7 +425,9 @@ const editUserProgress = (userId, listName, { location = 0, change = 0 }) => {
             lists: {
               ...progress.lists,
               [listName]: {
-                location: location || progress.lists[listName].location + change
+                startedAt: progress.lists[listName].startedAt,
+                location: location || progress.lists[listName].location + change,
+                updatedAt: Date.now()
               }
             }
           }
@@ -435,7 +439,8 @@ const editUserProgress = (userId, listName, { location = 0, change = 0 }) => {
               ...(progress.lists || {}),
               [listName]: {
                 location: location + change,
-                startedAt: Date.now()
+                startedAt: Date.now(),
+                updatedAt: Date.now()
               }
             }
           }
@@ -460,7 +465,8 @@ const editUserProgress = (userId, listName, { location = 0, change = 0 }) => {
           lists: {
             [listName]: {
               location: location + change,
-              startedAt: Date.now()
+              startedAt: Date.now(),
+              updatedAt: Date.now()
             }
           }
         }
