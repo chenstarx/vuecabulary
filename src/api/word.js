@@ -42,12 +42,36 @@ const lists = {
   list6
 }
 
+// 艾宾斯浩记忆周期，用数字来对应时间，单位毫秒
+// 5分钟和30分钟的周期的单词通常是学习模式（ /learn页面 ）下复习
+// 12小时或12小时以上周期的单词在复习模式（ /revise页面 ）下复习
+// 这里的时间是指距离上次学习（用户点了<认识>按钮且被判定为当前周期已记住）后过去的时间，即 Date.now() - updatedAt
+const periodTime = {
+  1: 1000 * 60 * 5, // 周期1： 5分钟
+  2: 1000 * 60 * 30, // 周期2： 30分钟
+  3: 1000 * 60 * 60 * 9, // 周期3： 12小时，PS：减3小时是为了防止可能本来晚上需要复习一遍的单词被推到第二天
+  4: 1000 * 60 * 60 * 24 * 1, // 周期4： 1天
+  5: 1000 * 60 * 60 * 24 * 2, // 周期5： 2天
+  6: 1000 * 60 * 60 * 24 * 4, // 周期6： 4天
+  7: 1000 * 60 * 60 * 24 * 7, // 周期7： 7天
+  8: 1000 * 60 * 60 * 24 * 15, // 周期8： 15天
+  9: 1000 * 60 * 60 * 24 * 31 // 周期9： 31天
+}
+
+const getPeriodTime = (period) => {
+  return periodTime[period]
+}
+
 const isListExist = (listName) => {
   return !!lists[listName]
 }
 
 const getWordList = (listName) => {
   return isListExist(listName) ? lists[listName] : {}
+}
+
+const getListWordNum = (listName) => {
+  return isListExist(listName) ? Object.keys(lists[listName]).length : 0
 }
 
 // 得到的是一个根据单词的index属性(来自于json源文件)排序过的单词数组而不是对象
@@ -59,6 +83,7 @@ const getSortedWordList = (listName) => {
   })
 }
 
+// 获取当前用户学过的所有单词，返回数据包含单词的学习状态(period, stage, updatedAt)
 const getUserLearned = () => {
   const { user } = store.getters || {}
   return new Promise((resolve, reject) => {
@@ -66,6 +91,60 @@ const getUserLearned = () => {
     cache.getLearnedByUserId(user._id)
       .then(res => resolve(res))
       .catch(err => reject(err))
+  })
+}
+
+// 测试用，报告当前用户学习情况
+const reportUserLearned = () => {
+  return new Promise((resolve, reject) => {
+    getUserLearned().then((learned) => {
+      let report = {}
+      for (let word in learned) {
+        report[word] = {
+          period: learned[word].period,
+          stage: learned[word].stage
+        }
+      }
+      resolve(report)
+    }).catch(err => reject(err))
+  })
+}
+
+// 获取当前用户需要复习的单词数量
+const getReviseWordNum = () => {
+  return new Promise((resolve, reject) => {
+    getUserLearned().then((learned) => {
+      let wordNum = 0
+      for (let word in learned) {
+        let { period, updatedAt } = learned[word] || {}
+        if (!period || !updatedAt || period > 9) continue
+        // period大于9被认为是已经完全记住，不需要再复习
+        const timeDiff = Date.now() - updatedAt
+        if (timeDiff > periodTime[period] || period === 1 || period === 2) wordNum += 1
+      }
+      resolve(wordNum)
+    }).catch(err => reject(err))
+  })
+}
+
+// 获取一个list的学习状态，返回需巩固单词，已掌握单词的数量
+const getListLearningStatus = (listName) => {
+  return new Promise((resolve, reject) => {
+    if (!isListExist(listName)) return reject(new Error('word list not found'))
+    getUserLearned().then((learned) => {
+      const wordList = getWordList(listName)
+      let wordReview = 0
+      let wordFinished = 0
+      for (let word in learned) {
+        if (!wordList[word]) continue
+        let { period } = learned[word] || {}
+        if (!period || period > 9) continue
+        // period大于9被认为是已经完全记住，不需要再复习
+        if (period <= 2) wordReview += 1
+        else if (period > 2) wordFinished += 1
+      }
+      resolve({ wordReview, wordFinished })
+    }).catch(err => reject(err))
   })
 }
 
@@ -103,35 +182,45 @@ const learnWordFromList = (wordEn, listName) => {
 // 复习模式api
 // 复习一个list内的某个单词
 // 会根据用户选择的[认识，模糊，不认识]来改变该词的记忆周期和不熟悉度
-const reviseWordFromList = (wordEn, listName, knowType) => {
+const reviseWordFromLearned = (wordEn, knowType) => {
   const { user } = store.getters || {}
-  const wordZh = ((lists[listName] || {})[wordEn] || {}).value
   return new Promise((resolve, reject) => {
     if (!user._id) return reject(new Error('user not login'))
-    if (!wordZh) return reject(new Error('word not found in list'))
     getUserLearned().then((learned) => {
+      const wordZh = (learned[wordEn] || {}).value
       const { period, stage, updatedAt } = learned[wordEn] || {}
-      if (!period) return reject(new Error('word not learned'))
+      if (!period || !wordZh) return reject(new Error('word not learned'))
       let operation = {}
       switch (knowType) {
         case 1: // 认识
-          // ***************** 要在这加个判断updatedAt来决定是否增加period *****************
           let periodChange = 0
-          const timeNow = Date.now()
-          if (period === 1 && (timeNow - updatedAt > 5 * 60 * 1000)) periodChange = 1
-          else if (period === 1 && stage <= 6) periodChange = 1
-          else if (period === 2 && (timeNow - updatedAt > 30 * 60 * 1000)) periodChange = 1
-          else if (period === 2 && stage <= 5) periodChange = 1
+          const isPeriodReached = Date.now() - updatedAt > periodTime[period] // true or false
+          // 之所以做如下处理是为了防止period上升过快，导致用户实际上没记住该单词就被系统判定学完了该单词
+          // 如果去掉这两if判断，一个单词只要用户点了两次 <认识>，该单词就会进入下一个记忆周期
+          // 这里的判断可以理解为 “系统认为在当前复习周期，用户已经记住了该单词，可以进入下一个记忆周期”
+          if ((period === 1 && (isPeriodReached || stage <= 6)) ||
+              (period === 2 && (isPeriodReached || stage <= 5)) ||
+              (period === 3 && (isPeriodReached || stage <= 4)) ||
+              (period === 4 && (isPeriodReached || stage <= 3)) ||
+              (period === 5 && (isPeriodReached || stage <= 2)) ||
+              (period === 6 && (isPeriodReached || stage <= 1)) ||
+              (period >= 7 && (isPeriodReached || stage <= 0))) periodChange = 1
+          // 一般触发 state <= n 条件都是在学习模式学完所有新词开始复习，或者在刷词模式下
+          // 根据记忆理论，一个单词复习7次（每次都认识）就可以完全记住该单词
           operation = {
             periodChange,
             stageChange: -1
           }
           break
         case 2: // 模糊
-          // period <=2 的单词相当于只是更新了下updatedAt
-          if (period > 2) {
+          if (period <= 2) {
             operation = {
-              period: 4
+              period: 1
+            }
+          } else {
+            operation = {
+              period: 1,
+              stageChange: 1
             }
           }
           break
@@ -143,8 +232,8 @@ const reviseWordFromList = (wordEn, listName, knowType) => {
             }
           } else {
             operation = {
-              period: 3,
-              stageChange: 1
+              period: 1,
+              stageChange: 2
             }
           }
           break
@@ -188,12 +277,8 @@ const getNextUnitFromList = (listName) => {
           let wordUnit = []
           if (location >= sortedList.length) { // 当前list内单词全都至少学了一遍，只剩下需要复习的单词
             for (let word of sortedList) {
-              if (!learned[word]) {
-                // learnWordFromList(word, listName)
-                console.log('location is not matched with learned')
-                break
-              }
               let { period } = learned[word] || {}
+              if (!period) continue // 触发这种情况是location大于实际进度了，一般不会发生
               if (period === 1 || period === 2) { // 因为当前list没有更多新词学了，所以剩下的词就不考虑时间有没有到了
                 wordUnit.push({
                   ...learned[word],
@@ -213,14 +298,10 @@ const getNextUnitFromList = (listName) => {
             })
           } else { // 当前list还有没学过的词
             for (let word of sortedList.slice(0, location)) { // 0 ~ location的单词是学过的单词，在learned里有记录
-              if (!learned[word]) {
-                // learnWordFromList(word, listName)
-                console.log('location is not matched with learned')
-                break
-              }
               let { period, updatedAt } = learned[word] || {}
+              if (!period || !updatedAt) continue // 触发这种情况是location大于实际进度了，一般不会发生
               const timeDiff = Date.now() - updatedAt
-              if ((period === 1 && timeDiff >= 5 * 60 * 1000) || (period === 2 && timeDiff >= 30 * 60 * 1000)) {
+              if ((period === 1 && timeDiff >= periodTime[1]) || (period === 2 && timeDiff >= periodTime[2])) {
                 wordUnit.push({
                   ...learned[word],
                   wordEn: word,
@@ -230,7 +311,6 @@ const getNextUnitFromList = (listName) => {
             }
             const unitLength = wordUnit.length
             if (unitLength < 7) {
-              console.log(unitLength)
               // 需要复习的单词未满一个unit时，在list里按顺序找单词填满一个unit
               const wordList = getWordList(listName)
               for (let i = 0; i < 7 - unitLength; i++) {
@@ -254,15 +334,15 @@ const getNextUnitFromList = (listName) => {
             })
           }
           // ***************** 要在这加同步学习进度location的代码 *****************
-          const nextUnit = wordUnit.splice(0, 7).map((obj) => {
+          const nextUnit = wordUnit.splice(0, 7).sort((a, b) => {
+            // 前面的加上stage只是为了让stage大的进入unit，在unit内的学习排序还是按时间来
+            return (b.period - a.period) || (a.updatedAt - b.updatedAt)
+          }).map((obj) => {
             return {
               wordEn: obj.wordEn,
               wordZh: obj.value,
               type: obj.type
             }
-          }).sort((a, b) => {
-            // 前面的加上stage只是为了让stage大的进入unit，在unit内的学习排序还是按时间来
-            return (b.period - a.period) || (a.updatedAt - b.updatedAt)
           })
           resolve(nextUnit)
         }).catch(err => reject(err))
@@ -282,98 +362,59 @@ const getNextUnitFromList = (listName) => {
   })
 }
 
-const getNextReviseWord = (listName) => {
-  const { user } = store.getters || {}
+// 复习模式api
+// 获取下一个要复习的unit
+// 返回数据结构和getNextUnitFromList()一致
+const getNextUnitFromLearned = () => {
   return new Promise((resolve, reject) => {
-    if (!user._id) return reject(new Error('user not login'))
-    if (!isListExist(listName)) return reject(new Error('word list not exist'))
-    getUserProgress(user._id).then((dict) => {
-      const progress = (dict || {})[listName]
-      const sortedList = getSortedWordList(listName) // sort顺序是固定的，每次得到的sortedList顺序一致，以此确保location的精确性
-      if (progress && progress.location >= 0) { // list progress record found
-        const location = progress.location
-        // 在学习模式（ /learn 页面）时，记忆周期为5分钟和30分钟的单词有可能需要在下一个进行复习
-        // 记忆周期大于30分钟（即12小时， 1天， 2天等）的词在复习模式才会出现
-        // PS：有记忆周期的单词肯定是至少学过一次的单词，肯定在learned表里
-        // 因此在这里加一个检查下一个单词是否是复习单词的步骤
-        getUserLearned().then((learned) => {
-          // PS：下面的获取复习单词的算法有很大的优化空间
-          let wordUnit = []
-          if (location >= sortedList.length) { // 当前list内单词全都至少学了一遍，只剩下需要复习的单词
-            for (let word of sortedList) {
-              if (!learned[word]) {
-                // learnWordFromList(word, listName)
-                console.log('location is not matched with learned')
-                break
-              }
-              let { period } = learned[word] || {}
-              if (period === 1 || period === 2) { // 因为当前list没有更多新词学了，所以剩下的词就不考虑时间有没有到了
-                wordUnit.push({
-                  ...learned[word],
-                  wordEn: word
-                })
-              }
-            }
-            if (!wordUnit.length) {
-              console.log('list learning finished')
-              resolve({}) // 当前list没有需要学习的单词了，返回空对象
-            }
-          } else { // 当前list还有没学过的词
-            for (let word of sortedList.slice(0, location)) { // 0 ~ location的单词是学过的单词，在learned里有记录
-              if (!learned[word]) {
-                // learnWordFromList(word, listName)
-                console.log('location is not matched with learned')
-                break
-              }
-              let { period, updatedAt } = learned[word] || {}
-              const timeDiff = Date.now() - updatedAt
-              if ((period === 1 && timeDiff >= 5 * 60 * 1000) || (period === 2 && timeDiff >= 30 * 60 * 1000)) {
-                wordUnit.push({
-                  ...learned[word],
-                  wordEn: word
-                })
-              }
-            }
-            if (!wordUnit.length) {
-              // 未找到需要复习的单词时，按list顺序返回下一个学习的单词
-              const wordEn = sortedList[location]
-              const wordZh = getWordList(listName)[wordEn].value
-              return resolve({ wordEn, wordZh, type: 'new' })
-            }
-          }
-          let rankedWordList = wordUnit.sort((a, b) => {
-            // period相等则比较stage，stage相等则比较updatedAt，注意stage是大的排前面
-            return (a.period - b.period) || (b.stage - a.stage) || (a.updatedAt - b.updatedAt)
+    getUserLearned().then((learned) => {
+      let wordUnit = []
+      for (let word in learned) {
+        let { period, updatedAt } = learned[word] || {}
+        if (!period || !updatedAt || period > 9) continue
+        // period大于9被认为是已经完全记住，不需要再复习
+        const timeDiff = Date.now() - updatedAt
+        if (timeDiff > periodTime[period] || period === 1 || period === 2) {
+          wordUnit.push({
+            ...learned[word],
+            wordEn: word,
+            type: 'learned'
           })
-          console.log(rankedWordList)
-          const wordEn = rankedWordList[0].wordEn
-          const wordZh = rankedWordList[0].value
-          resolve({ wordEn, wordZh, type: 'learned' })
-        }).catch(err => reject(err))
-      } else {
-        // 整个list都未学过
-        // new record added to progress
-        cache.editUserProgress(user._id, listName, { location: 0, change: 0 })
-          .then(() => {
-            const wordEn = sortedList[0]
-            const wordZh = getWordList(listName)[wordEn].value
-            resolve({ wordEn, wordZh, type: 'new' })
-          })
-          .catch(err => reject(err))
+        }
       }
+      wordUnit = wordUnit.sort((a, b) => {
+        // 注意这里period排序和学习模式反过来了，period小的优先复习
+        return ((b.stage - a.stage) + 2 * (a.period - b.period)) || (a.updatedAt - b.updatedAt)
+      })
+      const nextUnit = wordUnit.splice(0, 7).sort((a, b) => {
+        // 在unit内还是period大的优先
+        return (b.period - a.period) || (a.updatedAt - b.updatedAt)
+      }).map((obj) => {
+        return {
+          wordEn: obj.wordEn,
+          wordZh: obj.value,
+          type: obj.type
+        }
+      })
+      resolve(nextUnit)
     }).catch(err => reject(err))
   })
 }
 
 const word = {
+  getPeriodTime,
   isListExist,
   getWordList,
+  getListWordNum,
   getUserLearned,
+  reportUserLearned,
+  getReviseWordNum,
+  getListLearningStatus,
   getUserProgress,
   learnWordFromList,
   getNextUnitFromList,
-  getNextReviseWord,
-  reviseWordFromList
+  getNextUnitFromLearned,
+  reviseWordFromLearned
 }
 
 export default word
