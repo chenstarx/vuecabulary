@@ -12,8 +12,8 @@
                     </div>
                     <div class="revise-right">
                         <div class="revise-title">GRE高频325分机经词</div>
-                        <div class="revise-hint">早晚各复习一次，两周完全掌握！</div>
-                        <div class="revise-button" @click="goRevise">开始复习</div>
+                        <div class="revise-hint">{{reviseNum?'早晚各复习一次，两周完全掌握！':'当前没有待复习单词，快去学习新词吧~'}}</div>
+                        <div v-if="reviseNum" class="revise-button" @click="goRevise">开始复习</div>
                     </div>
                 </div>
                 <div class="hint">新学单词：</div>
@@ -21,37 +21,37 @@
                     <div class="learn-list" @click="goLearn('list1')">
                         <div class="list-title">Day 1：新学List1~3</div>
                         <div class="list-hint">300个单词</div>
-                        <div class="list-more">尚未开始，花费约3小时</div>
+                        <div class="list-more">{{ getListHint('list1') }}</div>
                         <div class="list-hover"></div>
                     </div>
                     <div class="learn-list" @click="goLearn('list2')">
                         <div class="list-title">Day 2：新学List4~6</div>
                         <div class="list-hint">300个单词</div>
-                        <div class="list-more">尚未开始，花费约3小时</div>
+                        <div class="list-more">{{ getListHint('list2') }}</div>
                         <div class="list-hover"></div>
                     </div>
                     <div class="learn-list" @click="goLearn('list3')">
                         <div class="list-title">Day 3：新学List7~9</div>
                         <div class="list-hint">300个单词</div>
-                        <div class="list-more">尚未开始，花费约3小时</div>
+                        <div class="list-more">{{ getListHint('list3') }}</div>
                         <div class="list-hover"></div>
                     </div>
                     <div class="learn-list" @click="goLearn('list4')">
                         <div class="list-title">Day 4：新学List10~12</div>
                         <div class="list-hint">300个单词</div>
-                        <div class="list-more">尚未开始，花费约3小时</div>
+                        <div class="list-more">{{ getListHint('list4') }}</div>
                         <div class="list-hover"></div>
                     </div>
                     <div class="learn-list" @click="goLearn('list5')">
                         <div class="list-title">Day 5：新学List13~15</div>
                         <div class="list-hint">300个单词</div>
-                        <div class="list-more">尚未开始，花费约3小时</div>
+                        <div class="list-more">{{ getListHint('list5') }}</div>
                         <div class="list-hover"></div>
                     </div>
                     <div class="learn-list" @click="goLearn('list6')">
                         <div class="list-title">Day 6：新学List16~18</div>
                         <div class="list-hint">220个单词</div>
-                        <div class="list-more">尚未开始，花费约2小时</div>
+                        <div class="list-more">{{ getListHint('list6') }}</div>
                         <div class="list-hover"></div>
                     </div>
                 </div>
@@ -68,6 +68,7 @@
 
 <script>
 import Login from '@/components/Login'
+import word from '@/api/word'
 
 export default {
   name: 'home',
@@ -76,11 +77,16 @@ export default {
   },
   mounted () {
     this.$event.on('login', this, () => { this.showLogin = true })
+    setTimeout(() => {
+      this.getListProgress()
+      this.getReviseNum()
+    }, 200)
   },
   data () {
     return {
       showLogin: false,
-      reviseNum: 256
+      reviseNum: 0,
+      listProgress: {}
     }
   },
   computed: {
@@ -89,6 +95,32 @@ export default {
     }
   },
   methods: {
+    getListProgress () {
+      word.getUserProgress().then((progress) => {
+        this.listProgress = progress || {}
+        console.log(progress)
+      }).catch(err => console.log(err))
+    },
+    getReviseNum () {
+      word.getReviseWordNum().then((num) => {
+        this.reviseNum = num
+      }).catch(err => console.log(err))
+    },
+    getListHint (listName) {
+      const progress = this.listProgress[listName]
+      const wordNum = word.getListWordNum(listName)
+      if (progress) {
+        const learnedNum = progress.location
+        if (learnedNum >= wordNum) return '已完成学习'
+        let hour = parseInt((wordNum - learnedNum) / 100)
+        let min = parseInt(0.6 * ((wordNum - learnedNum) % 100))
+        return `已学习${learnedNum}词，学完还需${hour ? hour + '小时' : ''}${min ? min + '分钟' : ''}`
+      } else {
+        let hour = parseInt(wordNum / 100)
+        let min = parseInt(0.6 * (wordNum % 100))
+        return `尚未开始，预计花费${hour ? hour + '小时' : ''}${min ? min + '分钟' : ''}`
+      }
+    },
     goRevise () {
       this.$router.push('/revise')
     },
