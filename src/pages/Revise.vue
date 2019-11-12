@@ -9,23 +9,23 @@
                 <div class="left-main">
                     <div class="left-title">
                         <img src="../static/icons/memory.png" />
-                        学习模式
+                        复习模式
                     </div>
                     <div class="left-counter">
                         <div class="left-number" style="color:#AAAAAA">{{wordLeft}}</div>
-                        <span>剩余</span>
+                        <span>不熟悉</span>
                         <img src="../static/icons/next.png" />
                         <div class="left-number" style="color:#EACD76">{{wordReview}}</div>
-                        <span>需巩固</span>
+                        <span>记忆模糊</span>
                         <img src="../static/icons/next.png" />
                         <div class="left-number" style="color:#23B26D">{{wordFinished}}</div>
-                        <span>已完成</span>
+                        <span>已记住的总数量</span>
                     </div>
-                    <div class="left-rate">{{progress}}%</div>
+                    <!-- <div class="left-rate">{{progress}}%</div> -->
                 </div>
             </div>
             <div class="learn-word">
-                <div class="word-card" @click="switchZh">
+                <div class="word-card" @click="cardClicked">
                     <div class="card-progress">
                         <div :style="'width:'+unitProgress+'%'" />
                     </div>
@@ -33,18 +33,32 @@
                     <div class="word-zh" :style="showZh?'':'opacity:0'">{{wordZh}}</div>
                 </div>
                 <div class="word-choice">
-                    <div class="button green" :style="showZh?'':'border:solid 2px #c0cace;color:#c0cace;'">
-                        <div class="button-num"><span>1</span></div>
-                        认识
-                    </div>
-                    <div class="button yellow" :style="showZh?'':'border:solid 2px #c0cace;color:#c0cace;'">
-                        <div class="button-num"><span>2</span></div>
-                        模糊
-                    </div>
-                    <div class="button red" :style="showZh?'':'border:solid 2px #c0cace;color:#c0cace;'">
-                        <div class="button-num"><span>3</span></div>
-                        不认识
-                    </div>
+                    <template v-if="wordType==='learned'">
+                        <div
+                          class="button green"
+                          @click="reviseCurrentWord(1)"
+                          :style="showZh?'':'border:solid 2px #c0cace;color:#c0cace;'"
+                        >
+                            <div class="button-num"><span>1</span></div>
+                            认识
+                        </div>
+                        <div
+                          class="button yellow"
+                          @click="reviseCurrentWord(2)"
+                          :style="showZh?'':'border:solid 2px #c0cace;color:#c0cace;'"
+                        >
+                            <div class="button-num"><span>2</span></div>
+                            模糊
+                        </div>
+                        <div
+                          class="button red"
+                          @click="reviseCurrentWord(3)"
+                          :style="showZh?'':'border:solid 2px #c0cace;color:#c0cace;'"
+                        >
+                            <div class="button-num"><span>3</span></div>
+                            不认识
+                        </div>
+                    </template>
                 </div>
             </div>
         </div>
@@ -52,30 +66,116 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import word from '@/api/word'
+
 export default {
-  name: 'learn',
+  name: 'revise',
   components: {},
   data () {
     return {
       showZh: false,
-      wordLeft: 13,
-      wordReview: 24,
-      wordFinished: 63,
-      wordEn: 'controversial',
-      wordZh: 'adj. 引起争论的；有争议的'
+      wordUnit: [],
+      unitPointer: 0,
+      wordLeft: 0,
+      wordReview: 0,
+      wordFinished: 0,
+      wordTotalNum: 0,
+      wordList: '',
+      wordType: '',
+      wordEn: '',
+      wordZh: ''
+    }
+  },
+  mounted () {
+    setTimeout(() => {
+      this.getNextUnit()
+      this.setStatusNums()
+      word.reportUserLearned().then(res => console.log(res)) // beta版测试用
+    }, 200)
+    document.onkeydown = (event) => {
+      switch (event.keyCode) {
+        case 32: // space
+          this.cardClicked()
+          break
+        case 49: // num 1
+          this.reviseCurrentWord(1)
+          break
+        case 50: // num 2
+          this.reviseCurrentWord(2)
+          break
+        case 51: // num 3
+          this.reviseCurrentWord(3)
+          break
+      }
     }
   },
   computed: {
-    progress () {
-      return 100 * (this.wordReview * 0.3 + this.wordFinished * 0.7) / (this.wordLeft + this.wordReview + this.wordFinished)
-    },
+    // progress () { // 这种算法得到的进度不太准
+    //   return (100 * (this.wordReview * 0.3 + this.wordFinished) / this.wordTotalNum).toFixed(2)
+    // },
     unitProgress () {
-      return 35.7
+      return 100 * ((this.unitPointer / this.wordUnit.length) || 0)
     }
   },
   methods: {
-    switchZh () {
+    getNextWord () {
+      if (this.wordUnit.length && this.unitPointer < this.wordUnit.length) {
+        const word = this.wordUnit[this.unitPointer]
+        this.showZh = false
+        this.wordType = word.type
+        this.wordEn = word.wordEn
+        this.wordZh = word.wordZh
+        this.unitPointer += 1
+        this.setStatusNums() // 每次切换下一个词都调用这个比较费资源，临时解决方案
+      } else if (this.wordUnit.length) {
+        this.getNextUnit()
+      } else {
+        this.showZh = false
+        this.wordType = ''
+        this.wordEn = '没有更多单词需要复习啦'
+        this.wordZh = ''
+        this.unitPointer = 0
+        this.setStatusNums()
+      }
+      word.getUserLearned().then(learned => console.log(this.wordEn, learned[this.wordEn])) // beta版测试用
+    },
+    getNextUnit () {
+      word.getNextUnitFromLearned().then((unit) => {
+        this.unitPointer = 0
+        this.wordUnit = unit
+        this.getNextWord()
+      }).catch(err => console.log(err))
+    },
+    reviseCurrentWord (knowType) {
+      if (!this.showZh) return
+      if (this.wordType !== 'learned') return
+      word.reviseWordFromLearned(this.wordEn, knowType).then(() => {
+        this.getNextWord()
+      }).catch(err => console.log(err))
+    },
+    setStatusNums () {
+      word.getUserLearned().then((learned) => {
+        let wordLeft = 0
+        let wordReview = 0
+        let wordFinished = 0
+        for (let key in learned) {
+          let { period, updatedAt } = learned[key] || {}
+          if (!period || !updatedAt || period > 9) continue
+          // period大于9被认为是已经完全记住，不需要再复习
+          if (period === 1) wordLeft += 1
+          else if (period === 2) wordReview += 1
+          else if (period > 2) {
+            const timeDiff = Date.now() - updatedAt
+            if (timeDiff > word.getPeriodTime(period)) wordLeft += 1
+            else wordFinished += 1
+          }
+        }
+        this.wordLeft = wordLeft
+        this.wordReview = wordReview
+        this.wordFinished = wordFinished
+      }).catch(err => console.log(err))
+    },
+    cardClicked () {
       this.showZh = !this.showZh
     },
     goBack () {
@@ -225,6 +325,7 @@ export default {
 .card-progress div {
   height: 100%;
   background: #40BC96;
+  transition: all 0.2s;
 }
 
 .word-en,
@@ -236,7 +337,22 @@ export default {
   flex-direction: column;
   left: 0;
   color: #455358;
-  transition: all 0.4s ease;
+}
+
+.word-zh {
+  height: calc(64% - 100px);
+  margin: 50px 0;
+  font-size: 23px;
+  line-height: 30px;
+  padding: 0 18%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+  font-family: "Microsoft YaHei" !important;
+  text-align: start;
+  align-items: center;
+  justify-content: flex-start;
+  white-space: pre-line;
 }
 
 .word-en {
@@ -254,12 +370,6 @@ export default {
   width: 100%;
   text-align: center;
   flex-shrink: 0;
-}
-
-.word-zh {
-  font-size: 32px;
-  height: 64%;
-  font-family: "Microsoft YaHei" !important;
 }
 
 .word-choice {
@@ -285,6 +395,12 @@ export default {
   cursor: pointer;
   position: relative;
   transition: all 0.4s ease;
+}
+
+.new {
+  width: 100%;
+  border: solid 2px #3CCFCF;
+  color: #455358;
 }
 
 .green {
