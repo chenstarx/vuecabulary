@@ -21,7 +21,8 @@ import list6 from '@/static/words/List6.json'
 
 cache.connect()
 
-// {
+// 测试用list
+// list1: {
 //   a: { value: '1', index: 1 },
 //   b: { value: '2', index: 2 },
 //   c: { value: '3', index: 3 },

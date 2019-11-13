@@ -4,7 +4,7 @@
 var db
 
 const config = {
-  database: 'test3',
+  database: 'gre',
   version: 1
 }
 
