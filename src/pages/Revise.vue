@@ -12,16 +12,16 @@
                         复习模式
                     </div>
                     <div class="left-counter">
-                        <div class="left-number" style="color:#AAAAAA">{{wordLeft}}</div>
-                        <span>不熟悉</span>
-                        <img src="../static/icons/next.png" />
-                        <div class="left-number" style="color:#EACD76">{{wordReview}}</div>
+                        <div class="left-number" style="color:#EACD76">{{wordLeft}}</div>
+                        <span>待复习</span>
+                        <img src="../static/icons/arrow.png" />
+                        <div class="left-number" style="color:#80D1B9">{{wordReview}}</div>
                         <span>记忆模糊</span>
-                        <img src="../static/icons/next.png" />
+                        <img src="../static/icons/arrow.png" />
                         <div class="left-number" style="color:#23B26D">{{wordFinished}}</div>
-                        <span>已记住的总数量</span>
+                        <span>当前已记住</span>
                     </div>
-                    <!-- <div class="left-rate">{{progress}}%</div> -->
+                    <div class="left-rate"></div>
                 </div>
             </div>
             <div class="learn-word">
@@ -153,7 +153,7 @@ export default {
         this.getNextWord()
       }).catch(err => console.log(err))
     },
-    setStatusNums () {
+    setStatusNums () { // 时间复杂度比较高，以后得改
       word.getUserLearned().then((learned) => {
         let wordLeft = 0
         let wordReview = 0
