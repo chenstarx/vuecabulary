@@ -132,11 +132,11 @@ const getListLearningStatus = (listName) => {
   return new Promise((resolve, reject) => {
     if (!isListExist(listName)) return reject(new Error('word list not found'))
     getUserLearned().then((learned) => {
-      const wordList = getWordList(listName)
+      const wordDict = getWordList(listName)
       let wordReview = 0
       let wordFinished = 0
       for (let word in learned) {
-        if (!wordList[word]) continue
+        if (!wordDict[word]) continue
         let { period } = learned[word] || {}
         if (!period || period > 9) continue
         // period大于9被认为是已经完全记住，不需要再复习
@@ -169,9 +169,8 @@ const learnWordFromList = (wordEn, listName) => {
     if (!wordZh) return reject(new Error('word not found in list'))
     cache.editUserLearned(user._id, { wordEn, wordZh }, { })
       .then((status) => {
-        // ******************************* 1 bug *******************************
-        // 如果用户在别的list已经学过该单词，会导致该list的progress.location不被 +1
-        // 但如果去掉if条件会导致location错乱
+        // WARNNING: 如果用户在别的list已经学过该单词，会导致该list的progress.location不被 +1
+        // 目前的解决方案是在调用 getNextUnitFronList() 时更新list的location
         if (status === 'add' || status === 'new') cache.editUserProgress(user._id, listName, { change: 1 }).then(() => { resolve('success') })
         else resolve('success')
       })
@@ -265,9 +264,10 @@ const getNextUnitFromList = (listName) => {
     if (!isListExist(listName)) return reject(new Error('word list not exist'))
     getUserProgress(user._id).then((dict) => {
       const progress = (dict || {})[listName]
+      const { location } = progress || {}
+      const wordDict = getWordList(listName) // 下面的是数组，这里的是对象
       const sortedList = getSortedWordList(listName) // sort顺序是固定的，每次得到的sortedList顺序一致，以此确保location的精确性
-      if (progress && progress.location >= 0) { // list progress record found
-        const location = progress.location
+      if (location >= 0) { // list progress record found
         // 在学习模式（ /learn 页面）时，记忆周期为5分钟和30分钟的单词有可能需要在下一个unit进行复习
         // 记忆周期大于30分钟（即12小时， 1天， 2天等）的词在复习模式才会出现
         // PS：有记忆周期的单词肯定是至少学过一次的单词，肯定在learned表里
@@ -312,11 +312,10 @@ const getNextUnitFromList = (listName) => {
             const unitLength = wordUnit.length
             if (unitLength < 7) {
               // 需要复习的单词未满一个unit时，在list里按顺序找单词填满一个unit
-              const wordList = getWordList(listName)
               for (let i = 0; i < 7 - unitLength; i++) {
                 if (location + i >= sortedList.length) break
                 let wordEn = sortedList[location + i]
-                let value = wordList[wordEn].value
+                let value = wordDict[wordEn].value
                 let newWord = {
                   wordEn,
                   value,
@@ -333,7 +332,14 @@ const getNextUnitFromList = (listName) => {
               return (b.period - a.period) || (b.stage - a.stage) || (a.updatedAt - b.updatedAt)
             })
           }
-          // ***************** 要在这加同步学习进度location的代码 *****************
+          // 同步location和实际学习进度，防止一个单词在别的list学过后导致本list的location与实际学习进度不匹配
+          let wordLearned = 0 // 比较耗时的写法，有优化空间
+          for (let word in learned) if (wordDict[word]) wordLearned += 1
+          if (wordLearned !== location) {
+            cache.editUserProgress(user._id, listName, { location: wordLearned })
+              .then(() => console.log('word list location corrected'))
+              .cache(err => console.log(err))
+          }
           const nextUnit = wordUnit.splice(0, 7).sort((a, b) => {
             // 前面的加上stage只是为了让stage大的进入unit，在unit内的学习排序还是按时间来
             return (b.period - a.period) || (a.updatedAt - b.updatedAt)
@@ -350,10 +356,9 @@ const getNextUnitFromList = (listName) => {
         // 整个list都未学过
         // new record added to progress
         let wordUnit = []
-        const wordList = getWordList(listName)
         for (let i = 0; i < 7; i++) {
           let wordEn = sortedList[i]
-          let wordZh = wordList[wordEn].value
+          let wordZh = wordDict[wordEn].value
           wordUnit.push({ wordEn, wordZh, type: 'new' })
         }
         resolve(wordUnit)
