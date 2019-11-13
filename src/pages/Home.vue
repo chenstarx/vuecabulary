@@ -57,11 +57,11 @@
                 </div>
             </div>
         </template>
-        <template v-else>
+        <div v-else class="main">
             <div class="header">两周搞定GRE单词</div>
             <img src="../static/icons/logo.svg" />
             <div class="start" @click="showLogin=true">现在开始</div>
-        </template>
+        </div>
         <div class="info" @click="goGit">© 2019-2020 chenstarx@GitHub<span>苏ICP备17067234号-3</span></div>
     </div>
 </template>
@@ -139,17 +139,17 @@ export default {
   width: 100vw;
   height: 100vh;
   background: #F0F0F0;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .main {
-  height: 100%;
-  padding: 110px 30px 80px 30px;
+  height: fit-content;
+  padding: 110px 30px;
   box-sizing: border-box;
   max-width: 1000px;
   margin: 0 auto;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 .revise {
@@ -311,22 +311,22 @@ export default {
   width: 100%;
   color: #40BC96;
   text-align: center;
-  font-size: 40px;
+  font-size: 42px;
   letter-spacing: 3px;
   font-weight: bold;
-  padding-top: 150px;
-  padding-bottom: 70px;
+  margin-top: 40px;
+  margin-bottom: 80px;
 }
 
 .start {
   width: 240px;
   height: 64px;
-  margin: 80px auto;
-  background: #40BC96;
+  margin: 100px auto 0 auto;
+  background: #3CCFCF;
+  color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #FFFFFF;
   font-size: 22px;
   font-weight: 600;
   letter-spacing: 2px;
@@ -336,7 +336,8 @@ export default {
 }
 
 .start:hover {
-  background: rgb(40, 156, 121);
+  background: #F9CC28;
+  color: #455358;
 }
 
 .info {
