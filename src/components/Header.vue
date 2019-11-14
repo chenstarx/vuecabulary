@@ -36,7 +36,7 @@ export default {
   methods: {
     goHome () {
       // if not home page then go home
-      return this.$route.path === '/' || this.$router.replace('/')
+      return this.$route.path === '/home' || this.$router.replace('/home')
     },
     userAction () {
       if (this.user._id) {
