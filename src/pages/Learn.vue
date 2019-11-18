@@ -140,7 +140,8 @@ export default {
     getNextWord () {
       if (this.wordUnit.length && this.unitPointer < this.wordUnit.length) {
         const word = this.wordUnit[this.unitPointer]
-        this.showZh = false
+        if (word.type === 'new') this.showZh = true
+        else this.showZh = false
         this.wordType = word.type
         this.wordEn = word.wordEn
         this.wordZh = word.wordZh
