@@ -291,44 +291,51 @@ const getNextUnitFromList = (listName) => {
         getUserLearned().then((learned) => {
           // 需要复习的单词肯定在学过的单词表里，所以先获取学过的单词
           let wordUnit = []
-          if (location >= sortedList.length) { // 当前list内单词全都至少学了一遍，只剩下需要复习的单词
-            for (let word of sortedList) {
-              let { period } = learned[word] || {}
-              if (!period) continue // 触发这种情况是location大于实际进度了，一般不会发生
-              if (period === 1 || period === 2) { // 因为当前list没有更多新词学了，所以剩下的词就不考虑时间有没有到了
-                wordUnit.push({
-                  ...learned[word],
-                  wordEn: word,
-                  type: 'learned'
-                })
+          // 到周期的单词优先复习
+          const timeNow = Date.now()
+          for (let word of sortedList.slice(0, location)) { // 0 ~ location的单词是学过的单词，在learned里有记录
+            let { period, updatedAt } = learned[word] || {}
+            if (!period || !updatedAt) continue // 触发这种情况是location大于实际进度了，一般不会发生
+            const timeDiff = timeNow - updatedAt
+            if ((period === 1 && timeDiff >= periodTime[1]) || (period === 2 && timeDiff >= periodTime[2])) {
+              wordUnit.push({
+                ...learned[word],
+                wordEn: word,
+                type: 'learned'
+              })
+            }
+          }
+          // 到周期的单词未填满一个unit
+          const unitLen = wordUnit.length
+          if (unitLen < 7) {
+            if (location >= sortedList.length) { // 当前list内单词全都至少学了一遍，只剩下需要复习的单词
+              let wordTempUnit = []
+              for (let word of sortedList) {
+                let { period, updatedAt } = learned[word] || {}
+                if (!period || !updatedAt) continue // 触发这种情况是location大于实际进度了，一般不会发生
+                const timeDiff = timeNow - updatedAt
+                // 和上面到周期取单词互补的条件，防止取出重复的单词
+                if ((period === 1 && timeDiff < periodTime[1]) || (period === 2 && timeDiff < periodTime[2])) {
+                  wordTempUnit.push({
+                    ...learned[word],
+                    wordEn: word,
+                    type: 'learned'
+                  })
+                }
               }
-            }
-            if (!wordUnit.length) {
-              console.log('list learning finished')
-              return resolve([]) // 当前list没有需要学习的单词了，返回空对象
-            }
-            wordUnit = wordUnit.sort((a, b) => {
-              // period相等则比较stage，stage相等则比较updatedAt
-              // 注意是优先stage大的排前面，然后period大的排前面，最后updatedAt小的排前面
-              return (b.stage - a.stage) || (b.period - a.period) || (a.updatedAt - b.updatedAt)
-            })
-          } else { // 当前list还有没学过的词
-            for (let word of sortedList.slice(0, location)) { // 0 ~ location的单词是学过的单词，在learned里有记录
-              let { period, updatedAt } = learned[word] || {}
-              if (!period || !updatedAt) continue // 触发这种情况是location大于实际进度了，一般不会发生
-              const timeDiff = Date.now() - updatedAt
-              if ((period === 1 && timeDiff >= periodTime[1]) || (period === 2 && timeDiff >= periodTime[2])) {
-                wordUnit.push({
-                  ...learned[word],
-                  wordEn: word,
-                  type: 'learned'
-                })
+              if (!unitLen && !wordTempUnit.length) {
+                console.log('list learning finished')
+                return resolve([]) // 当前list没有需要学习的单词了，返回空对象
               }
-            }
-            const unitLength = wordUnit.length
-            if (unitLength < 7) {
+              wordTempUnit = wordTempUnit.sort((a, b) => {
+                // 注意是优先stage大的排前面，然后period大的排前面，最后updatedAt小的排前面
+                return (b.stage - a.stage) || (b.period - a.period) || (a.updatedAt - b.updatedAt)
+              })
+              // 拼接两个list，拼出来的wordUnit长度小于等于7
+              wordUnit = wordTempUnit.splice(0, 7 - unitLen).concat(wordUnit)
+            } else { // 当前list还有没学过的词
               // 需要复习的单词未满一个unit时，在list里按顺序找单词填满一个unit
-              for (let i = 0; i < 7 - unitLength; i++) {
+              for (let i = 0; i < 7 - unitLen; i++) {
                 if (location + i >= sortedList.length) break
                 let wordEn = sortedList[location + i]
                 let value = wordDict[wordEn].value
@@ -342,16 +349,8 @@ const getNextUnitFromList = (listName) => {
                 wordUnit.push(newWord)
               }
             }
-            wordUnit = wordUnit.sort((a, b) => {
-              // period相等则比较stage，stage相等则比较updatedAt
-              // 和上面的排序方法不一样，注意是优先period和stage大的排前面，然后updatedAt小的排前面
-              return (b.period - a.period) || (b.stage - a.stage) || (a.updatedAt - b.updatedAt)
-            })
           }
-          const nextUnit = wordUnit.splice(0, 7).sort((a, b) => {
-            // 前面的加上stage只是为了让stage大的进入unit，在unit内的学习排序还是按时间来
-            return (b.period - a.period) || (a.updatedAt - b.updatedAt)
-          }).map((obj) => {
+          const nextUnit = wordUnit.splice(0, 7).map((obj) => {
             return {
               wordEn: obj.wordEn,
               wordZh: obj.value,
