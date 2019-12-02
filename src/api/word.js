@@ -120,7 +120,7 @@ const getReviseWordNum = () => {
         let { period, updatedAt } = learned[word] || {}
         if (!period || !updatedAt || period > 9) continue
         // period大于9被认为是已经完全记住，不需要再复习
-        const timeDiff = Date.now() - updatedAt
+        let timeDiff = Date.now() - updatedAt
         if (timeDiff > periodTime[period] || period === 1 || period === 2) wordNum += 1
       }
       resolve(wordNum)
@@ -296,8 +296,8 @@ const getNextUnitFromList = (listName) => {
           for (let word of sortedList.slice(0, location)) { // 0 ~ location的单词是学过的单词，在learned里有记录
             let { period, updatedAt } = learned[word] || {}
             if (!period || !updatedAt) continue // 触发这种情况是location大于实际进度了，一般不会发生
-            const timeDiff = timeNow - updatedAt
-            if ((period === 1 && timeDiff >= periodTime[1]) || (period === 2 && timeDiff >= periodTime[2])) {
+            let timeDiff = timeNow - updatedAt
+            if ((period === 1 || period === 2) && timeDiff >= periodTime[period]) {
               wordUnit.push({
                 ...learned[word],
                 wordEn: word,
@@ -313,9 +313,9 @@ const getNextUnitFromList = (listName) => {
               for (let word of sortedList) {
                 let { period, updatedAt } = learned[word] || {}
                 if (!period || !updatedAt) continue // 触发这种情况是location大于实际进度了，一般不会发生
-                const timeDiff = timeNow - updatedAt
+                let timeDiff = timeNow - updatedAt
                 // 和上面到周期取单词互补的条件，防止取出重复的单词
-                if ((period === 1 && timeDiff < periodTime[1]) || (period === 2 && timeDiff < periodTime[2])) {
+                if ((period === 1 || period === 2) && timeDiff < periodTime[period]) {
                   wordTempUnit.push({
                     ...learned[word],
                     wordEn: word,
@@ -381,12 +381,15 @@ const getNextUnitFromLearned = () => {
   return new Promise((resolve, reject) => {
     getUserLearned().then((learned) => {
       let wordUnit = []
+      const timeNow = Date.now()
+      // 到记忆周期的单词，或者还处在5分钟周期的单词优先复习
       for (let word in learned) {
         let { period, updatedAt } = learned[word] || {}
         if (!period || !updatedAt || period > 9) continue
         // period大于9被认为是已经完全记住，不需要再复习
-        const timeDiff = Date.now() - updatedAt
-        if (timeDiff > periodTime[period] || period === 1 || period === 2) {
+        let timeDiff = timeNow - updatedAt
+        // 还处在5分钟记忆周期的单词，不管时间有没有到周期都加入排序
+        if (period === 1 || timeDiff > periodTime[period]) {
           wordUnit.push({
             ...learned[word],
             wordEn: word,
@@ -394,10 +397,32 @@ const getNextUnitFromLearned = () => {
           })
         }
       }
-      wordUnit = wordUnit.sort((a, b) => {
-        // 注意这里period排序和学习模式反过来了，period小的优先复习
-        return ((b.stage - a.stage) + 2 * (a.period - b.period)) || (a.updatedAt - b.updatedAt)
-      })
+      const unitLen = wordUnit.length
+      if (unitLen < 7) {
+        // 如果没填满一个unit，就从period为2但还没到达复习周期（period为2时周期是30分钟）的单词里取单词
+        // 只有在复习任务基本完成，需要复习的单词只剩下一些period为2但是还没到30分钟周期的单词时会触发
+        let wordTempUnit = []
+        for (let word in learned) {
+          let { period, updatedAt } = learned[word] || {}
+          if (period !== 2 || !period || !updatedAt) continue
+          // 因为只有 period < 3 的单词才能在没到周期的情况下复习
+          // 而上面取单词的条件包含 period == 1，因此这里可以直接简化为period !== 2就跳过
+          if (timeNow - updatedAt <= periodTime[period]) { // 此时period肯定为2
+            wordTempUnit.push({
+              ...learned[word],
+              wordEn: word,
+              type: 'learned'
+            })
+          }
+        }
+        wordTempUnit = wordTempUnit.sort((a, b) => { return (b.stage - a.stage) || (a.updatedAt - b.updatedAt) })
+        wordUnit = wordUnit.concat(wordTempUnit.splice(0, 7 - unitLen))
+      } else {
+        wordUnit = wordUnit.sort((a, b) => {
+          // 注意这里period排序和学习模式反过来了，period小的优先复习
+          return ((b.stage - a.stage) + 2 * (a.period - b.period)) || (a.updatedAt - b.updatedAt)
+        })
+      }
       const nextUnit = wordUnit.splice(0, 7).sort((a, b) => {
         // 在unit内还是period大的优先
         return (b.period - a.period) || (a.updatedAt - b.updatedAt)
