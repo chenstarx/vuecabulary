@@ -168,14 +168,29 @@ const learnWordFromList = (wordEn, listName) => {
   return new Promise((resolve, reject) => {
     if (!user._id) return reject(new Error('user not login'))
     if (!wordZh) return reject(new Error('word not found in list'))
-    cache.editUserLearned(user._id, { wordEn, wordZh }, { })
-      .then((status) => {
-        // WARNNING: 如果用户在别的list已经学过该单词，会导致该list的progress.location不被 +1
-        // 目前的解决方案是在调用 getNextUnitFronList() 时更新list的location
-        if (status === 'add' || status === 'new') cache.editUserProgress(user._id, listName, { change: 1 }).then(() => { resolve('success') })
-        else resolve('success')
-      })
-      .catch(err => reject(err))
+    getUserLearned().then((learned) => {
+      const isLearned = !!learned[wordEn]
+      if (isLearned) { // 单词已经学过了，一般是在别的list学过
+        getUserProgress().then((progress) => {
+          const location = ((progress || {})[listName] || {}).location || 0
+          const sortedList = getSortedWordList(listName)
+          if (sortedList.slice(0, location).indexOf(wordEn) >= 0) { // 在当前list学过
+            resolve('success')
+          } else { // 在别的list学过
+            cache.editUserProgress(user._id, listName, { change: 1 })
+              .then(() => { resolve('success') })
+              .catch(err => reject(err))
+          }
+        })
+      } else {
+        cache.editUserLearned(user._id, { wordEn, wordZh }, { })
+          .then((status) => {
+            if (status === 'add' || status === 'new') cache.editUserProgress(user._id, listName, { change: 1 }).then(() => { resolve('success') })
+            else resolve('success')
+          })
+          .catch(err => reject(err))
+      }
+    })
   })
 }
 
@@ -332,14 +347,6 @@ const getNextUnitFromList = (listName) => {
               // 和上面的排序方法不一样，注意是优先period和stage大的排前面，然后updatedAt小的排前面
               return (b.period - a.period) || (b.stage - a.stage) || (a.updatedAt - b.updatedAt)
             })
-          }
-          // 同步location和实际学习进度，防止一个单词在别的list学过后导致本list的location与实际学习进度不匹配
-          let wordLearned = 0 // 比较耗时的写法，有优化空间
-          for (let word in learned) if (wordDict[word]) wordLearned += 1
-          if (wordLearned !== location) {
-            cache.editUserProgress(user._id, listName, { location: wordLearned })
-              .then(() => console.log('word list location corrected'))
-              .cache(err => console.log(err))
           }
           const nextUnit = wordUnit.splice(0, 7).sort((a, b) => {
             // 前面的加上stage只是为了让stage大的进入unit，在unit内的学习排序还是按时间来
