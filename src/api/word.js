@@ -230,7 +230,8 @@ const reviseWordFromLearned = (wordEn, knowType) => {
         case 2: // 模糊
           if (period <= 2) {
             operation = {
-              period: 1
+              period: 1,
+              stageChange: 0.5
             }
           } else {
             operation = {
