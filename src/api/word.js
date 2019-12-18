@@ -197,7 +197,7 @@ const learnWordFromList = (wordEn, listName) => {
 // 复习模式api
 // 复习一个list内的某个单词
 // 会根据用户选择的[认识，模糊，不认识]来改变该词的记忆周期和不熟悉度
-const reviseWordFromLearned = (wordEn, knowType) => {
+const reviseWordFromLearned = (wordEn, knowType, mode) => {
   const { user } = store.getters || {}
   return new Promise((resolve, reject) => {
     if (!user._id) return reject(new Error('user not login'))
@@ -231,7 +231,7 @@ const reviseWordFromLearned = (wordEn, knowType) => {
           if (period <= 2) {
             operation = {
               period: 1,
-              stageChange: 0.5
+              stageChange: mode === 'learn' ? 0.5 : 0
             }
           } else {
             operation = {
@@ -350,6 +350,11 @@ const getNextUnitFromList = (listName) => {
                 wordUnit.push(newWord)
               }
             }
+          } else {
+            wordUnit = wordUnit.sort((a, b) => {
+              // 30分钟周期优先，因为5分钟周期的单词可能特别多
+              return (b.period - a.period) || (a.updatedAt - b.updatedAt)
+            })
           }
           const nextUnit = wordUnit.splice(0, 7).map((obj) => {
             return {

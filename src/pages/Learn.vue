@@ -176,7 +176,7 @@ export default {
     reviseCurrentWord (knowType) {
       if (!this.showZh) return
       if (this.wordType !== 'learned') return
-      word.reviseWordFromLearned(this.wordEn, knowType).then(() => {
+      word.reviseWordFromLearned(this.wordEn, knowType, 'learn').then(() => {
         this.getNextWord()
       }).catch(err => console.log(err))
     },
