@@ -27,7 +27,8 @@
 之所以使用indexDB是因为学习进度需要被长久保存，
 在Web端能满足需求的只有localStorage和indexDB。
 但这种需要储存大量数据的应用场景不适合使用localStorage，因此最后采用了indexDB。
-Ps: 因为indexDB和mongoDB有很多的相似处，本项目在未来可以很方便的切换为云端储存。
+
+因为indexDB和mongoDB有很多的相似处，本项目在未来可以很方便的切换为云端储存。
 
 ## 技术栈
 
