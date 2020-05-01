@@ -361,7 +361,7 @@ export default {
   overflow-y: auto;
   box-sizing: border-box;
   font-family: "Microsoft YaHei" !important;
-  text-align: start;
+  text-align: left;
   align-items: center;
   justify-content: flex-start;
   white-space: pre-line;
